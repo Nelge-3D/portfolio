@@ -7,28 +7,82 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Effet de scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Tenter de jouer la musique au chargement de la page
+  useEffect(() => {
+    const tryPlay = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.1; // volume faible pour éviter les blocages
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            setHasInteracted(true);
+          })
+          .catch((err) => {
+            console.log('Lecture auto bloquée, en attente d’interaction.', err);
+            setupInteractionListeners();
+          });
+      }
+    };
+
+    const setupInteractionListeners = () => {
+      window.addEventListener('click', tryPlayOnInteraction);
+      window.addEventListener('scroll', tryPlayOnInteraction);
+    };
+
+    const tryPlayOnInteraction = () => {
+      if (!hasInteracted && audioRef.current) {
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            setHasInteracted(true);
+            cleanupListeners();
+          })
+          .catch((err) => {
+            console.log('Toujours bloqué après interaction.', err);
+          });
+      }
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener('click', tryPlayOnInteraction);
+      window.removeEventListener('scroll', tryPlayOnInteraction);
+    };
+
+    tryPlay();
+
+    return cleanupListeners;
+  }, [hasInteracted]);
+
   const toggleMusic = () => {
     if (!audioRef.current) return;
-
     if (isPlaying) {
       audioRef.current.pause();
+      setIsPlaying(false);
     } else {
-      audioRef.current.play().catch(() => {
-        // certains navigateurs bloquent autoplay : on ne fait rien
-      });
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          setHasInteracted(true);
+        })
+        .catch((err) => {
+          console.log('Erreur lecture via bouton :', err);
+        });
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -47,7 +101,7 @@ export default function Nav() {
         </span>
       </div>
 
-      {/* Desktop Nav */}
+      {/* Nav Desktop */}
       <div className="hidden md:flex space-x-8 items-center text-sm font-medium">
         {[
           ['/', 'Home'],
@@ -65,7 +119,7 @@ export default function Nav() {
           </a>
         ))}
 
-        {/* Bouton musique */}
+        {/* Icône musique */}
         <button
           onClick={toggleMusic}
           className="ml-4 hover:text-amber-300 transition-all duration-200"
@@ -75,9 +129,8 @@ export default function Nav() {
         </button>
       </div>
 
-      {/* Mobile Burger */}
+      {/* Mobile */}
       <div className="md:hidden z-50 flex items-center gap-4">
-        {/* Mobile bouton musique */}
         <button
           onClick={toggleMusic}
           className="hover:text-amber-300 transition-all"
@@ -85,13 +138,12 @@ export default function Nav() {
         >
           {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
         </button>
-
         <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Side Drawer */}
+      {/* Drawer mobile */}
       <div
         className={`fixed top-0 right-0 h-full w-64 backdrop-blur-xl bg-neutral-900/95 text-neutral-100 transform ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -122,8 +174,8 @@ export default function Nav() {
         ))}
       </div>
 
-      {/* Audio player caché */}
-      <audio ref={audioRef} loop src="/slowlife.mp3" preload="auto" />
+      {/* Balise audio */}
+      <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
     </nav>
   );
 }
