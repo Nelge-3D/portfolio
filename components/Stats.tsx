@@ -7,7 +7,7 @@ export default function StatsSection() {
       <div
         className="bg-cover bg-center text-white py-24 px-6 md:px-16"
         style={{
-          backgroundImage: "url('/images/law-library.jpg')", // 🔁 à remplacer par le vrai chemin
+          backgroundImage: "url('/Hero.png')", // 🔁 à remplacer par le vrai chemin
         }}
       >
         <div className="max-w-3xl">

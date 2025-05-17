@@ -1,9 +1,10 @@
-import Image from "next/image";
-import Nav from "./components/Nav";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Stats from "./components/Stats";
+
+import Nav from "../components/Nav";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Services from "../components/Services";
+import Stats from "../components/Stats";
+import Testimonials from "../components/Testimonials";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero/>
       <About/>
       <Services/>
+      <Testimonials/>
       <Stats/>
       
 
