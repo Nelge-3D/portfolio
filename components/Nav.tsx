@@ -1,11 +1,13 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, Volume2, VolumeX } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,19 @@ export default function Nav() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {
+        // certains navigateurs bloquent autoplay : on ne fait rien
+      });
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <nav
@@ -33,7 +48,7 @@ export default function Nav() {
       </div>
 
       {/* Desktop Nav */}
-      <div className="hidden md:flex space-x-8 text-sm font-medium">
+      <div className="hidden md:flex space-x-8 items-center text-sm font-medium">
         {[
           ['/', 'Home'],
           ['#about', 'À propos'],
@@ -49,10 +64,28 @@ export default function Nav() {
             {label}
           </a>
         ))}
+
+        {/* Bouton musique */}
+        <button
+          onClick={toggleMusic}
+          className="ml-4 hover:text-amber-300 transition-all duration-200"
+          aria-label="Activer/Désactiver musique"
+        >
+          {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
+        </button>
       </div>
 
       {/* Mobile Burger */}
-      <div className="md:hidden z-50">
+      <div className="md:hidden z-50 flex items-center gap-4">
+        {/* Mobile bouton musique */}
+        <button
+          onClick={toggleMusic}
+          className="hover:text-amber-300 transition-all"
+          aria-label="Activer/Désactiver musique"
+        >
+          {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
+        </button>
+
         <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -88,6 +121,9 @@ export default function Nav() {
           </a>
         ))}
       </div>
+
+      {/* Audio player caché */}
+      <audio ref={audioRef} loop src="/slowlife.mp3" preload="auto" />
     </nav>
   );
 }
