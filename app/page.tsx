@@ -8,6 +8,7 @@ import Testimonials from "../components/Testimonials";
 import Cursor from "@/components/Cursor";
 
 
+
 export default function Home() {
   return (
     <main>
@@ -18,6 +19,7 @@ export default function Home() {
       <Services/>
       <Testimonials/>
       <Stats/>
+      
       
 
     </main>
