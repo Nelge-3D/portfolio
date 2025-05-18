@@ -61,17 +61,24 @@ export default function Nav() {
           }
         )}
       >
-        {/* Logo */}
-        <div className="text-2xl font-extrabold z-50 transition-transform duration-300 hover:scale-105 cursor-pointer select-none">
-          <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-white text-transparent bg-clip-text px-2 py-1 rounded shadow-sm hover:shadow-amber-300/50 hover:brightness-125 transition-all duration-300">
-            ⌘ Nelge 3D
-          </span>
-        </div>
+        {/* Logo amélioré */}
+        <a href="/" className="z-50 group cursor-pointer select-none transition-transform duration-300 hover:scale-105">
+          <div className="text-2xl font-bold text-white tracking-tight relative">
+            <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-white text-transparent bg-clip-text">
+              ⌘ Nelge 3D
+            </span>
+
+            {/* Halo subtil au hover */}
+            <span className="absolute inset-0 blur-md rounded opacity-0 group-hover:opacity-10 bg-amber-300 transition duration-300 pointer-events-none" />
+          </div>
+        </a>
+
+
 
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-10 items-center text-base font-semibold tracking-wide">
           {[
-            ['/', 'Home'],
+            ['/log', 'Home'],
             ['#about', 'À propos'],
             ['#services', 'Mes services'],
             ['#testimonials', 'Témoignages'],
@@ -99,7 +106,7 @@ export default function Nav() {
         <div className="md:hidden z-50 flex items-center gap-4">
           <button
             onClick={toggleMusic}
-            className="hover:text-amber-400 transition-colors duration-250"
+            className="hover:text-amber-400 text-white transition-colors duration-300"
             aria-label="Activer/Désactiver musique"
           >
             {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
@@ -107,7 +114,7 @@ export default function Nav() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
-            className="focus:outline-none"
+            className="text-white hover:text-amber-400 transition-colors duration-300"
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -115,19 +122,20 @@ export default function Nav() {
 
         {/* Drawer mobile */}
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-black/95 text-neutral-100 shadow-lg transform ${
+          className={`fixed top-0 right-0 h-full w-64 bg-black/10 text-white shadow-lg transform ${
             menuOpen ? 'translate-x-0' : 'translate-x-full'
-          } transition-transform duration-300 ease-in-out z-40 flex flex-col items-start p-8 space-y-8 md:hidden`}
+          } transition-transform duration-300 ease-in-out z-40 flex flex-col p-9 space-y-4 md:hidden`}
         >
           <button
             onClick={() => setMenuOpen(false)}
-            className="ml-auto mb-6 text-neutral-300 hover:text-white focus:outline-none"
-            aria-label="Close menu"
+            className="ml-auto mb-11 text-neutral-400 hover:text-white transition-colors"
+            aria-label="Fermer le menu"
           >
-            <X size={28} />
+            
           </button>
+
           {[
-            ['/', 'Home'],
+            ['/log', 'Home'],
             ['#about', 'À propos'],
             ['#services', 'Services'],
             ['#testimonials', 'Témoignages'],
@@ -137,12 +145,13 @@ export default function Nav() {
               key={label}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="text-xl font-semibold w-full block hover:text-amber-400 transition-colors"
+              className="w-full block text-lg font-medium px-4 py-3 rounded-lg bg-neutral-800 hover:bg-neutral-700 hover:text-amber-400 transition-colors duration-200"
             >
               {label}
             </a>
           ))}
         </div>
+
       </nav>
 
       {/* Audio - sans autoPlay */}

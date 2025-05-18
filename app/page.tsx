@@ -6,6 +6,7 @@ import Services from "../components/Services";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import Cursor from "@/components/Cursor";
+import Footer from "@/components/Footer";
 
 
 
@@ -19,7 +20,7 @@ export default function Home() {
       <Services/>
       <Testimonials/>
       <Stats/>
-      
+      <Footer/>
       
 
     </main>
