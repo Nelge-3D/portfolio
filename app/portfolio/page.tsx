@@ -1,10 +1,10 @@
 'use client';
-import React, { useState } from 'react';
-import { PlayCircle, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { PlayCircle, X, User } from 'lucide-react'; // Ajout de User
 // @ts-ignore
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import Link from 'next/link';
 
 const items = [
   { type: 'image', src: '/renders/modele1.png', title: 'Modèle 3D 1' },
@@ -25,6 +25,13 @@ export default function Portfolio() {
 
   return (
     <>
+      {/* HEADER avec icône user */}
+      <header className="flex justify-end p-4 bg-white shadow-md">
+        <Link href="/admin" aria-label="Connexion Admin" className="text-gray-700 hover:text-amber-500 transition-colors">
+          <User size={28} />
+        </Link>
+      </header>
+
       <section id="portfolio" className="bg-neutral-50 py-24 px-4 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-5xl font-extrabold text-neutral-900 mb-3 tracking-tight">
@@ -108,7 +115,7 @@ export default function Portfolio() {
         </div>
       )}
 
-      {/* Footer stylé */}
+      {/* Footer */}
       <footer className="bg-neutral-900 text-white py-12 mt-20">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
