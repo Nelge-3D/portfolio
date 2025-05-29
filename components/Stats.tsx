@@ -39,11 +39,12 @@ export default function StatsSection() {
           <div className="md:w-1/3 flex justify-start md:justify-end">
             <Link
               href="/portfolio"
-              className="inline-block px-6 py-3 rounded-full bg-[#391a14] text-white font-semibold shadow-xl hover:shadow-amber-500/50 transition duration-300 hover:-translate-y-1 hover:ring-2 hover:ring-amber-300 ring-offset-2"
+              className="inline-block px-6 py-3 rounded-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-semibold shadow-xl hover:shadow-amber-500/50 transition duration-300 hover:-translate-y-1 hover:ring-2 hover:ring-amber-300 ring-offset-2"
             >
               Voir le portfolio
             </Link>
           </div>
+         
         </motion.div>
       </div>
 

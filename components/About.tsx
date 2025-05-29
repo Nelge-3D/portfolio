@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function About() {
@@ -21,143 +22,90 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  // Parallax mouse move
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      const shapes = document.querySelectorAll('.parallax-shape');
-      shapes.forEach(shape => {
-        (shape as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative bg-[#f8f6f1] py-16 px-6 md:px-12 overflow-hidden"
+      className="relative py-20 px-6 md:px-16 min-h-[90vh] flex flex-col justify-center
+                 bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-900"
     >
-      {/* Background SVG artistic shapes */}
-      <svg
-        className="parallax-shape absolute left-[-80px] top-[-60px] w-[500px] h-[500px] opacity-[0.06] text-[#9c8f83] animate-fadeInSlow"
-        viewBox="0 0 600 600"
-        fill="none"
-      >
-        <circle cx="300" cy="300" r="300" fill="currentColor" />
-      </svg>
-
-      <svg
-        className="parallax-shape absolute right-[-60px] bottom-[-40px] w-[400px] h-[400px] opacity-[0.04] text-[#cabfb6] animate-fadeInSlow delay-300"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <rect width="400" height="400" rx="100" fill="currentColor" />
-      </svg>
-
-      <div className="relative z-10 max-w-5xl mx-auto text-gray-800">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <h2
-          className={`text-3xl md:text-4xl font-bold mb-10 
-          ${isVisible ? 'animate-fadeIn delay-150' : 'opacity-0'}`}
+          className={`text-4xl md:text-5xl font-extrabold mb-14 tracking-wide transition-transform duration-800 ${
+            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}
         >
           À propos de moi
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10 text-lg leading-relaxed">
-          <p className={`${isVisible ? 'animate-fadeIn delay-300' : 'opacity-0'}`}>
-            Je suis un passionné de 3D spécialisé dans la création de publicités visuelles et de scènes immersives.
-            J’accorde une grande importance à l’esthétique, aux détails et à la narration visuelle.
-          </p>
-          <p className={`${isVisible ? 'animate-fadeIn delay-500' : 'opacity-0'}`}>
-            Mon objectif est de donner vie à des idées grâce à Blender, Unity, ou Unreal Engine, en associant technologie et émotion.
-            Chaque projet est conçu pour marquer les esprits et valoriser l’univers du client.
-          </p>
+        <div className="grid md:grid-cols-2 gap-14 text-lg leading-relaxed">
+          {[ 
+            "Je suis un passionné de 3D spécialisé dans la création de publicités visuelles et de scènes immersives. J’accorde une grande importance à l’esthétique, aux détails et à la narration visuelle.",
+            "Mon objectif est de donner vie à des idées grâce à Blender, Unity, ou Unreal Engine, en associant technologie et émotion. Chaque projet est conçu pour marquer les esprits et valoriser l’univers du client."
+          ].map((text, i) => (
+            <p
+              key={i}
+              className={`rounded-xl p-6 shadow-lg border border-gray-200 bg-white transition-transform duration-700 ease-out hover:scale-[1.03] hover:shadow-xl ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: `${150 + i * 150}ms` }}
+            >
+              {text}
+            </p>
+          ))}
         </div>
 
-        <div className="mt-12 space-y-8 text-base">
-          <div className={`${isVisible ? 'animate-fadeIn delay-700' : 'opacity-0'}`}>
-            <h3 className="font-semibold text-lg">🧠 Philosophie de création</h3>
-            <p>Créer avec intention, équilibrer technique et émotion, capturer l’essence d’un concept pour le rendre mémorable.</p>
-          </div>
-
-          <div className={`${isVisible ? 'animate-fadeIn delay-900' : 'opacity-0'}`}>
-            <h3 className="font-semibold text-lg">🛠️ Compétences techniques</h3>
-            <p>Blender, Unity, Unreal Engine, After Effects, Figma, Substance Painter, Photoshop.</p>
-          </div>
-
-          <div className={`${isVisible ? 'animate-fadeIn delay-[1100ms]' : 'opacity-0'}`}>
-            <h3 className="font-semibold text-lg">💻 Setup</h3>
-            <p>PC RTX 4070, 32Go RAM, écran 2K 144Hz, tablette Wacom Intuos Pro.</p>
-          </div>
-
-          <div className={`${isVisible ? 'animate-fadeIn delay-[1300ms]' : 'opacity-0'}`}>
-            <h3 className="font-semibold text-lg">🕰️ Mon parcours</h3>
-            <ul className="list-disc pl-6">
-              <li>2021 – Débuts sur Blender</li>
-              <li>2022 – Freelance en motion design</li>
-              <li>2023 – Intégration de la 3D dans des projets web interactifs</li>
-              <li>2024 – Lancement de mon portfolio & projets personnels</li>
-            </ul>
-          </div>
-
-          <div className="pt-6">
-            <a
-              href="/CV_MonNom.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#391a14] text-white px-6 py-3 rounded-full font-medium hover:bg-[#2e120e] transition duration-300 shadow-lg"
+        <div className="mt-16 space-y-12 text-base max-w-3xl mx-auto">
+          {[
+            {
+              title: "🧠 Philosophie de création",
+              content: "Créer avec intention, équilibrer technique et émotion, capturer l’essence d’un concept pour le rendre mémorable."
+            },
+            {
+              title: "🛠️ Compétences techniques",
+              content: "Blender, Unity, Unreal Engine, After Effects, Figma, Substance Painter, Photoshop."
+            },
+            {
+              title: "💻 Setup",
+              content: "PC RTX 4070, 32Go RAM, écran 2K 144Hz, tablette Wacom Intuos Pro."
+            },
+            {
+              title: "🕰️ Mon parcours",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>2021 – Débuts sur Blender</li>
+                  <li>2022 – Freelance en motion design</li>
+                  <li>2023 – Intégration de la 3D dans des projets web interactifs</li>
+                  <li>2024 – Lancement de mon portfolio & projets personnels</li>
+                </ul>
+              )
+            }
+          ].map(({ title, content }, i) => (
+            <div
+              key={i}
+              className={`rounded-lg p-5 shadow-lg border border-gray-200 bg-white transition-transform duration-700 ease-out hover:scale-[1.05] hover:shadow-2xl ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${450 + i * 150}ms` }}
             >
-              📄 Télécharger mon CV PDF
-            </a>
-          </div>
+              <h3 className="font-semibold text-xl mb-2">{title}</h3>
+              <p>{content}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="/CV_MonNom.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gray-900 text-white px-10 py-4 rounded-full font-semibold tracking-wide shadow-lg
+                       transform transition-transform duration-300 hover:scale-105 active:scale-95"
+          >
+            📄 Télécharger mon CV PDF
+          </a>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeInSlow {
-          from {
-            opacity: 0;
-            transform: scale(1.1);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease forwards;
-        }
-
-        .animate-fadeInSlow {
-          animation: fadeInSlow 2.5s ease forwards;
-        }
-
-        .delay-150 { animation-delay: 0.15s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-700 { animation-delay: 0.7s; }
-        .delay-900 { animation-delay: 0.9s; }
-        .delay-[1100ms] { animation-delay: 1.1s; }
-        .delay-[1300ms] { animation-delay: 1.3s; }
-
-        .opacity-0 { opacity: 0; }
-      `}</style>
     </section>
   );
 }

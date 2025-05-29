@@ -1,150 +1,158 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { PlayCircle, X, User } from 'lucide-react'; // Ajout de User
-// @ts-ignore
+
+import React, { useEffect, useState, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Link from 'next/link';
+import CardItem from '@/components/portfolio/CardItem';
+import ModalViewer from '@/components/portfolio/ModalViewer';
+import FilterButton from '@/components/portfolio/FilterButton';
+import { User, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Orbitron } from 'next/font/google';
+import CreationProcess from '@/components/portfolio/CreationProcess';
+import clsx from 'clsx';
 
-const items = [
+// Définition du type pour les éléments du portfolio
+type Item = {
+  type: 'image' | 'video';
+  src: string;
+  title: string;
+};
+
+const items: Item[] = [
   { type: 'image', src: '/renders/modele1.png', title: 'Modèle 3D 1' },
+  { type: 'video', src: '/renders/video4.mp4', title: 'Animation 3D 4' },
   { type: 'video', src: '/renders/video1.mp4', title: 'Animation 3D 1' },
+  { type: 'image', src: '/renders/modele3.png', title: 'Modèle 3D 3' },
   { type: 'image', src: '/renders/modele2.png', title: 'Modèle 3D 2' },
   { type: 'video', src: '/renders/video2.mp4', title: 'Animation 3D 2' },
+  { type: 'video', src: '/renders/video3.mp4', title: 'Animation 3D 3' },
+  { type: 'image', src: '/renders/modele5.png', title: 'Modèle 3D 5' },
+  { type: 'image', src: '/renders/modele_4.png', title: 'Modèle 3D 4' },
 ];
+
+const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
 
 export default function Portfolio() {
   const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
-  const [modal, setModal] = useState<{ type: string; src: string } | null>(null);
+  const [modal, setModal] = useState<Item | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    AOS.init({ once: true, duration: 800 });
+    if (typeof window !== 'undefined') {
+      AOS.init({ once: true, duration: 800 });
+
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 10);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(console.error);
+    }
+  };
 
   const filteredItems = items.filter((item) => filter === 'all' || item.type === filter);
 
   return (
     <>
-      {/* HEADER avec icône user */}
-      <header className="flex justify-end p-4 bg-white shadow-md">
-        <Link href="/admin" aria-label="Connexion Admin" className="text-gray-700 hover:text-amber-500 transition-colors">
-          <User size={28} />
-        </Link>
-      </header>
+      <nav
+        className={clsx(
+          'fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 backdrop-blur-md bg-gray-900',
+          {
+            'py-2 shadow-md bg-gray-900': isScrolled,
+          }
+        )}
+      >
+        <a href="/" className="z-50 group cursor-pointer select-none transition-transform duration-300 hover:scale-105">
+          <div className="text-2xl font-bold text-white tracking-tight relative">
+            <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-white text-transparent bg-clip-text">
+              ⌘ Nelge 3D
+            </span>
+            <span className="absolute inset-0 blur-md rounded opacity-0 group-hover:opacity-10 bg-amber-300 transition duration-300 pointer-events-none" />
+          </div>
+        </a>
 
-      <section id="portfolio" className="bg-neutral-50 py-24 px-4 md:px-12">
+        <div className="hidden md:flex space-x-10 items-center text-white font-semibold tracking-wide">
+          {[['/', 'Home'], ['/dev-portfolio', 'Dev Portfolio'], ].map(([href, label]) => (
+            <a key={label} href={href} className="transition-colors duration-250 hover:text-amber-400 hover:underline underline-offset-4">
+              {label}
+            </a>
+          ))}
+          <button onClick={toggleMusic} className="ml-6 hover:text-amber-400 transition-colors duration-250" aria-label="Activer/Désactiver musique">
+            {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
+          </button>
+        </div>
+
+        <div className="md:hidden z-50 flex items-center gap-4">
+          <button onClick={toggleMusic} className="hover:text-amber-400 text-white transition-colors duration-300" aria-label="Activer/Désactiver musique">
+            {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
+          </button>
+          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" className="text-white hover:text-amber-400 transition-colors duration-300">
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        <div
+          className={`fixed top-0 right-0 h-full w-64 bg-black/10 text-white shadow-lg transform ${menuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-40 flex flex-col p-9 space-y-4 md:hidden`}
+        >
+          <button onClick={() => setMenuOpen(false)} className="ml-auto mb-11 text-neutral-400 hover:text-white transition-colors" aria-label="Fermer le menu" />
+          {[['/', 'Home'], ['/dev-portfolio', 'Dev Portfolio']].map(([href, label]) => (
+            <a key={label} href={href} onClick={() => setMenuOpen(false)} className="w-full block text-lg font-medium px-4 py-3 rounded-lg bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 hover:text-amber-400 transition-colors duration-200">
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
+
+      <section className="bg-gradient-to-b from-gray-900 to-black text-white py-24 px-4 md:px-12 pt-40">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl font-extrabold text-neutral-900 mb-3 tracking-tight">
-            Mon Portfolio
-          </h2>
+          <h2 className={`${orbitron.className} text-5xl font-extrabold`}>Mon Portfolio</h2>
           <p className="text-gray-600 mb-12 text-base md:text-lg">
             Créations 3D : modélisation, rendu et animation.
           </p>
 
-          {/* Filtres */}
-          <div className="flex justify-center flex-wrap gap-4 mb-14">
-            {['all', 'image', 'video'].map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f as any)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${
-                  filter === f
-                    ? 'bg-amber-500 text-white border-amber-500 shadow-md'
-                    : 'bg-white text-gray-800 hover:bg-amber-100 border-gray-300'
-                }`}
-              >
-                {f === 'all' ? 'Tous' : f === 'image' ? 'Images' : 'Vidéos'}
-              </button>
-            ))}
+          <div data-aos="zoom-in" className="flex justify-center flex-wrap gap-4 mb-14">
+            <FilterButton label="Tous" value="all" isActive={filter === 'all'} onClick={() => setFilter('all')} />
+            <FilterButton label="Images" value="image" isActive={filter === 'image'} onClick={() => setFilter('image')} />
+            <FilterButton label="Vidéos" value="video" isActive={filter === 'video'} onClick={() => setFilter('video')} />
           </div>
 
-          {/* Grille */}
-          <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div data-aos="fade-up-right" className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {filteredItems.map((item, i) => (
-              <div
-                key={i}
-                data-aos="fade-up"
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white cursor-pointer"
-                onClick={() => setModal({ type: item.type, src: item.src })}
-              >
-                {item.type === 'image' ? (
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="relative h-72">
-                    <video
-                      src={item.src}
-                      className="w-full h-full object-cover"
-                      muted
-                      loop
-                      autoPlay
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-                      <PlayCircle className="text-white w-12 h-12" />
-                    </div>
-                  </div>
-                )}
-                <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white text-sm py-2 px-3 opacity-0 group-hover:opacity-100 transition">
-                  {item.title}
-                </div>
-              </div>
+              <CardItem key={i} item={item} onClick={() => setModal(item)} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* MODAL Lightbox */}
-      {modal && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <button
-            className="absolute top-6 right-6 text-white z-50"
-            onClick={() => setModal(null)}
-          >
-            <X size={32} />
-          </button>
-          <div className="max-w-5xl w-full relative">
-            {modal.type === 'image' ? (
-              <img src={modal.src} className="w-full h-auto rounded-xl shadow-lg" />
-            ) : (
-              <video src={modal.src} controls className="w-full h-auto rounded-xl shadow-lg" />
-            )}
-          </div>
+      {modal && <ModalViewer modal={modal} onClose={() => setModal(null)} />}
+      <CreationProcess />
+
+      <section className="bg-gradient-to-b from-gray-900 to-black text-white text-center">
+        <h3 className="text-3xl font-bold text-white mb-4">📩 Me contacter</h3>
+        <div className="flex justify-center h-20 gap-6">
+          <a href="https://github.com/tonprofil" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400">GitHub</a>
+          <a href="https://linkedin.com/in/tonprofil" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400">LinkedIn</a>
         </div>
-      )}
-
-      {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-12 mt-20">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-xl font-semibold mb-2">À propos</h3>
-            <p className="text-sm text-neutral-400">
-              Créateur de contenus 3D passionné par l’innovation visuelle et la narration immersive.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2">Navigation</h3>
-            <ul className="text-sm text-neutral-400 space-y-1">
-              <li><a href="#home" className="hover:text-white">Accueil</a></li>
-              <li><a href="#portfolio" className="hover:text-white">Portfolio</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-2">Contact</h3>
-            <p className="text-sm text-neutral-400">Mail : contact@monportfolio.com</p>
-            <p className="text-sm text-neutral-400">Instagram : @monprofil3d</p>
-          </div>
-        </div>
-
-        <div className="text-center text-xs text-neutral-500 mt-10">
-          © {new Date().getFullYear()} Mon Nom. Tous droits réservés.
-        </div>
-      </footer>
+      </section>
     </>
   );
 }

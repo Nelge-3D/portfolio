@@ -55,7 +55,7 @@ export default function Nav() {
 
       <nav
         className={clsx(
-          'fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 backdrop-blur-md bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900/90 text-neutral-100 shadow-lg transition-all duration-300',
+          'fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 backdrop-blur-md bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900',
           {
             'py-2 shadow-md bg-neutral-900/95': isScrolled,
           }
@@ -76,9 +76,9 @@ export default function Nav() {
 
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-10 items-center text-base font-semibold tracking-wide">
+        <div className="hidden md:flex space-x-10 items-center text-white font-semibold tracking-wide">
           {[
-            ['/log', 'Home'],
+            ['#hero', 'Home'],
             ['#about', 'À propos'],
             ['#services', 'Mes services'],
             ['#testimonials', 'Témoignages'],
@@ -135,7 +135,7 @@ export default function Nav() {
           </button>
 
           {[
-            ['/log', 'Home'],
+            ['#hero', 'Home'],
             ['#about', 'À propos'],
             ['#services', 'Services'],
             ['#testimonials', 'Témoignages'],
@@ -145,7 +145,7 @@ export default function Nav() {
               key={label}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="w-full block text-lg font-medium px-4 py-3 rounded-lg bg-neutral-800 hover:bg-neutral-700 hover:text-amber-400 transition-colors duration-200"
+              className="w-full block text-lg font-medium px-4 py-3 rounded-lg bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 hover:text-amber-400 transition-colors duration-200"
             >
               {label}
             </a>
