@@ -39,7 +39,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-24 px-6 md:px-16 text-white bg-gradient-to-br from-[#0e1a0e] via-[#1e2b1e] to-[#0e1a0e] overflow-hidden"
+      className="relative py-24 px-6 md:px-16 text-white bg-gradient-to-bl from-black via-[#1a002b] to-[#2e0066] overflow-hidden"
     >
       {/* Background animation */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-400 via-transparent to-transparent animate-pulse z-0" />

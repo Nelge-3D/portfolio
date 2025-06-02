@@ -39,7 +39,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="bg-[#0e1a0e] text-[#f5f3ed] py-20 px-6 md:px-16"
+      className="bg-gradient-to-br from-[#2e0066] via-[#1a002b] to-black text-[#f5f3ed] py-20 px-6 md:px-16"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className={`text-lg font-medium mb-10 ${isVisible ? 'animate-fadeIn delay-150' : 'opacity-0'}`}>

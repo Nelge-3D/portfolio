@@ -27,7 +27,7 @@ export default function Header() {
       <div className="relative z-10 flex items-center justify-center h-full px-6">
         <div className="text-center max-w-2xl text-white">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg animate-fadeIn">
-            Nelge 3D
+            Nelge <span className="text-amber-300">3D</span>
           </h1>
           <p className="text-lg md:text-xl mb-4 text-amber-300 font-semibold drop-shadow-md animate-fadeIn delay-150">
             « Le design en 3D, c’est donner vie à l’imaginaire, un pixel à la fois. »

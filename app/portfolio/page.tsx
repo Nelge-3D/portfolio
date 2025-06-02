@@ -4,10 +4,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import CardItem from '@/components/portfolio/CardItem';
 import ModalViewer from '@/components/portfolio/ModalViewer';
 import FilterButton from '@/components/portfolio/FilterButton';
-import { User, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX } from 'lucide-react';
 import { Orbitron } from 'next/font/google';
 import CreationProcess from '@/components/portfolio/CreationProcess';
 import clsx from 'clsx';
@@ -34,25 +35,70 @@ const items: Item[] = [
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
 
 export default function Portfolio() {
-  const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
-  const [modal, setModal] = useState<Item | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioLevel, setAudioLevel] = useState(0);
+  const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
+  const [modal, setModal] = useState<Item | null>(null);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const dataArrayRef = useRef<Uint8Array | null>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      AOS.init({ once: true, duration: 800 });
-
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 10);
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
+    AOS.init({ duration: 800 });
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+  }, [menuOpen]);
+
+  // Audio visualization
+  useEffect(() => {
+  if (!audioRef.current || analyserRef.current) return;
+
+  const audio = audioRef.current;
+  const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+
+  // Stocker le contexte dans une ref si tu veux le réutiliser plus tard
+  const source = audioContext.createMediaElementSource(audio);
+  const analyser = audioContext.createAnalyser();
+  analyser.fftSize = 256;
+
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+
+  source.connect(analyser);
+  analyser.connect(audioContext.destination);
+
+  analyserRef.current = analyser;
+  dataArrayRef.current = dataArray;
+
+  const update = () => {
+    if (analyserRef.current && dataArrayRef.current) {
+      analyserRef.current.getByteFrequencyData(dataArrayRef.current);
+      const average = dataArrayRef.current.reduce((sum, val) => sum + val, 0) / bufferLength;
+      setAudioLevel(average);
+    }
+    requestAnimationFrame(update);
+  };
+
+  update();
+
+  return () => {
+    audioContext.close();
+  };
+}, []);
+
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
@@ -60,67 +106,117 @@ export default function Portfolio() {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(console.error);
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
     }
   };
 
-  const filteredItems = items.filter((item) => filter === 'all' || item.type === filter);
+  const glowOpacity = isPlaying ? Math.min(audioLevel / 150, 1) : 0.3;
+  const glowScale = isPlaying ? 0.9 + audioLevel / 300 : 0.95;
+
+  const filteredItems = items.filter(item => filter === 'all' || item.type === filter);
 
   return (
     <>
+      <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
+
       <nav
         className={clsx(
           'fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-50 backdrop-blur-md bg-gray-900',
-          {
-            'py-2 shadow-md bg-gray-900': isScrolled,
-          }
+          { 'py-2 shadow-md': isScrolled }
         )}
       >
-        <a href="/" className="z-50 group cursor-pointer select-none transition-transform duration-300 hover:scale-105">
-          <div className="text-2xl font-bold text-white tracking-tight relative">
-            <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-white text-transparent bg-clip-text">
-              ⌘ Nelge 3D
-            </span>
-            <span className="absolute inset-0 blur-md rounded opacity-0 group-hover:opacity-10 bg-amber-300 transition duration-300 pointer-events-none" />
+        {/* Logo avec lueurs */}
+        <Link href="/" className="z-50 group cursor-pointer select-none relative">
+          <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
+            <div
+              className="w-44 h-44 rounded-full bg-yellow-400 blur-2xl absolute animate-spin-slow"
+              style={{
+                animationDuration: '12s',
+                opacity: glowOpacity,
+                transform: `scale(${glowScale})`,
+              }}
+            />
+            <div
+              className="w-40 h-40 rounded-full bg-violet-600 blur-2xl absolute animate-spin-reverse-slow"
+              style={{
+                animationDuration: '10s',
+                opacity: glowOpacity * 0.8,
+                transform: `scale(${glowScale * 0.95})`,
+              }}
+            />
           </div>
-        </a>
+          <div className="relative w-32 h-14 transition-transform duration-300 group-hover:scale-110">
+            <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+          </div>
+        </Link>
 
+        {/* Navigation desktop */}
         <div className="hidden md:flex space-x-10 items-center text-white font-semibold tracking-wide">
-          {[['/', 'Home'], ['/dev-portfolio', 'Dev Portfolio'], ].map(([href, label]) => (
-            <a key={label} href={href} className="transition-colors duration-250 hover:text-amber-400 hover:underline underline-offset-4">
+          {[
+            ['/', 'Home'],
+            ['/dev-portfolio', 'Dev Portfolio'],
+          ].map(([href, label]) => (
+            <a
+              key={label}
+              href={href}
+              className="transition-colors duration-250 hover:text-amber-400 hover:underline underline-offset-4"
+            >
               {label}
             </a>
           ))}
-          <button onClick={toggleMusic} className="ml-6 hover:text-amber-400 transition-colors duration-250" aria-label="Activer/Désactiver musique">
+          <button onClick={toggleMusic} className="hover:text-amber-400 transition-colors" aria-label="Toggle musique">
             {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
           </button>
         </div>
 
-        <div className="md:hidden z-50 flex items-center gap-4">
-          <button onClick={toggleMusic} className="hover:text-amber-400 text-white transition-colors duration-300" aria-label="Activer/Désactiver musique">
-            {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
-          </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" className="text-white hover:text-amber-400 transition-colors duration-300">
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
+        {/* Mobile */}
+                <div className="md:hidden z-50 flex items-center gap-4">
+                  <button
+                    onClick={toggleMusic}
+                    className="hover:text-amber-400 text-white transition-colors duration-300"
+                    aria-label="Activer/Désactiver musique"
+                  >
+                    {isPlaying ? <Volume2 size={22} /> : <VolumeX size={22} />}
+                  </button>
+                  <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label="Toggle menu"
+                    className="text-white hover:text-amber-400 transition-colors duration-300"
+                  >
+                    {menuOpen ? <X size={28} /> : <Menu size={28} />}
+                  </button>
+                </div>
 
+        {/* Menu latéral mobile */}
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-black/10 text-white shadow-lg transform ${menuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-40 flex flex-col p-9 space-y-4 md:hidden`}
+          className={`fixed top-0 right-0 h-full w-64 bg-black/10 text-white shadow-lg transform ${
+            menuOpen ? 'translate-x-0' : 'translate-x-full'
+          } transition-transform duration-300 ease-in-out z-40 flex flex-col p-9 space-y-4 md:hidden backdrop-blur-lg`}
         >
-          <button onClick={() => setMenuOpen(false)} className="ml-auto mb-11 text-neutral-400 hover:text-white transition-colors" aria-label="Fermer le menu" />
-          {[['/', 'Home'], ['/dev-portfolio', 'Dev Portfolio']].map(([href, label]) => (
-            <a key={label} href={href} onClick={() => setMenuOpen(false)} className="w-full block text-lg font-medium px-4 py-3 rounded-lg bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 hover:text-amber-400 transition-colors duration-200">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="ml-auto mb-11 text-neutral-400 hover:text-white transition-colors"
+            aria-label="Fermer le menu"
+          />
+
+          {[
+            ['#hero', 'Home'],
+            ['#about', 'À propos'],
+            ['#services', 'Services'],
+            ['#testimonials', 'Témoignages'],
+            ['#stats', 'Satisfaction'],
+          ].map(([href, label]) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className="w-full block text-lg font-medium px-4 py-3 rounded-xl bg-black/70 shadow-md hover:text-amber-400 transition duration-200"
+            >
               {label}
             </a>
           ))}
         </div>
       </nav>
-
-      <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
 
       <section className="bg-gradient-to-b from-gray-900 to-black text-white py-24 px-4 md:px-12 pt-40">
         <div className="max-w-7xl mx-auto text-center">
@@ -153,6 +249,9 @@ export default function Portfolio() {
           <a href="https://linkedin.com/in/tonprofil" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400">LinkedIn</a>
         </div>
       </section>
+
+      {/* Audio tag */}
+      <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
     </>
   );
 }

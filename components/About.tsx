@@ -26,36 +26,34 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-20 px-6 md:px-16 min-h-[90vh] flex flex-col justify-center
-                 bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-900"
+      className="relative py-24 px-6 md:px-16 min-h-[90vh] bg-gradient-to-b from-black via-gray-900 to-black text-white"
     >
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <h2
-          className={`text-4xl md:text-5xl font-extrabold mb-14 tracking-wide transition-transform duration-800 ${
-            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
-          }`}
-        >
+      {/* Titre */}
+      <div className="max-w-6xl mx-auto relative z-10">
+        <h2 className={`text-4xl md:text-5xl font-extrabold mb-16 tracking-wide text-center`}>
           À propos de moi
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-14 text-lg leading-relaxed">
-          {[ 
+        {/* Grille asymétrique */}
+        <div className="grid md:grid-cols-2 gap-10">
+          {[
             "Je suis un passionné de 3D spécialisé dans la création de publicités visuelles et de scènes immersives. J’accorde une grande importance à l’esthétique, aux détails et à la narration visuelle.",
-            "Mon objectif est de donner vie à des idées grâce à Blender, Unity, ou Unreal Engine, en associant technologie et émotion. Chaque projet est conçu pour marquer les esprits et valoriser l’univers du client."
+            "Mon objectif est de donner vie à des idées grâce à Blender, Unity, ou Unreal Engine, en associant technologie et émotion. Chaque projet est conçu pour marquer les esprits et valoriser l’univers du client.",
           ].map((text, i) => (
-            <p
+            <div
               key={i}
-              className={`rounded-xl p-6 shadow-lg border border-gray-200 bg-white transition-transform duration-700 ease-out hover:scale-[1.03] hover:shadow-xl ${
+              className={`backdrop-blur-md bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 shadow-xl transform transition-all duration-700 ease-out hover:scale-105 hover:shadow-amber-400/30 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
-              style={{ transitionDelay: `${150 + i * 150}ms` }}
+              style={{ transitionDelay: `${200 + i * 150}ms` }}
             >
-              {text}
-            </p>
+              <p className="text-white/90 text-lg leading-relaxed">{text}</p>
+            </div>
           ))}
         </div>
 
-        <div className="mt-16 space-y-12 text-base max-w-3xl mx-auto">
+        {/* Blocs d'infos techniques */}
+        <div className="mt-20 grid md:grid-cols-2 gap-10">
           {[
             {
               title: "🧠 Philosophie de création",
@@ -83,26 +81,26 @@ export default function About() {
           ].map(({ title, content }, i) => (
             <div
               key={i}
-              className={`rounded-lg p-5 shadow-lg border border-gray-200 bg-white transition-transform duration-700 ease-out hover:scale-[1.05] hover:shadow-2xl ${
+              className={`backdrop-blur-md bg-white/5 p-6 rounded-xl border border-white/20 shadow-lg transition-all transform duration-700 hover:scale-105 hover:shadow-amber-400/30 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: `${450 + i * 150}ms` }}
+              style={{ transitionDelay: `${500 + i * 150}ms` }}
             >
-              <h3 className="font-semibold text-xl mb-2">{title}</h3>
-              <p>{content}</p>
+              <h3 className="font-semibold text-xl text-amber-400 mb-3">{title}</h3>
+              <div className="text-white/80 text-base">{content}</div>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* Bouton CV */}
+        <div className="mt-20 text-center">
           <a
             href="/CV_MonNom.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-gray-900 text-white px-10 py-4 rounded-full font-semibold tracking-wide shadow-lg
-                       transform transition-transform duration-300 hover:scale-105 active:scale-95"
+            className="inline-block px-6 py-3 rounded-full  text-white font-semibold shadow-xl hover:shadow-amber-500/50 transition duration-300 hover:-translate-y-1 hover:ring-2 hover:ring-amber-300 ring-offset-2"
           >
-            📄 Télécharger mon CV PDF
+            📄 Télécharger mon CV
           </a>
         </div>
       </div>
