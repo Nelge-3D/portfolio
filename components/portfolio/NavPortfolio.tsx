@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Volume2, VolumeX } from 'lucide-react';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Welcome from './Welcome'; // Modale de bienvenue
+ // Modale de bienvenue
 import Link from 'next/link'; // ← AJOUTE CECI EN HAUT
 
 export default function Nav() {
@@ -51,7 +51,6 @@ export default function Nav() {
 
   return (
     <>
-      {showWelcome && <Welcome onClose={handleWelcomeClose} />}
 
       <nav
         className={clsx(
@@ -106,11 +105,8 @@ export default function Nav() {
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-10 items-center font-semibold tracking-wide">
           {[
-            ['#hero', 'Home'],
-            ['#about', 'À propos'],
-            ['#services', 'Mes services'],
-            ['#testimonials', 'Témoignages'],
-            ['#stats', 'Satisfaction'],
+            ['/', 'Home'],
+            ['/dev-portfolio', 'Dev Portfolio'],
           ].map(([href, label]) => (
             <a
               key={label}
@@ -164,11 +160,8 @@ export default function Nav() {
           />
 
           {[
-            ['#hero', 'Home'],
-            ['#about', 'À propos'],
-            ['#services', 'Services'],
-            ['#testimonials', 'Témoignages'],
-            ['#stats', 'Satisfaction'],
+            ['/', 'Home'],
+            ['/dev-portfolio', 'Dev Portfolio'],
           ].map(([href, label]) => (
             <a
               key={label}

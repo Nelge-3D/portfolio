@@ -13,14 +13,20 @@ import {
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
 import ThreeDModelViewer from '@/components/portfolio/ThreeDModelviewer';
+import NavDevPortfolio from '@/components/portfolio/NavDevPortfolio';
+
+
+
+
 
 const projects = [
   {
-    title: 'Application ONG AVP',
-    url: 'https://next-jsjs.vercel.app',
-    image: '/projects/avp.png',
-    description: "Plateforme pour la gestion des activités d'hygiène en temps réel.",
+    title: 'Redesign ',
+    url: 'https://economy-five.vercel.app/',
+    image: '/projects/economy.png',
+    description: "Une proposition pour le ministère de l'économie.",
     category: 'ONG',
+    tags: ['UX/UI', 'Travail collaboratif'],
   },
   {
     title: 'Site Auth NextAuth',
@@ -39,7 +45,7 @@ const projects = [
   {
     title: 'Villa Rouge Réservation',
     url: 'https://villa-rouge.vercel.app',
-    image: '/projects/villarouge.png',
+    image: '/projects/villarouge2.png',
     description: "Plateforme de réservation d’hôtel avec une interface intuitive.",
     category: 'Hôtellerie',
   },
@@ -65,12 +71,14 @@ export default function DevPortfolio() {
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
-  return (
-    <section className="bg-gray-900 text-white min-h-screen py-20 px-4 md:px-12">
+      return (
+        <section className="bg-gray-900 text-white min-h-screen py-50 px-4 md:px-12">
+          <NavDevPortfolio/>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-10">
           🚀 Portfolio Développeur
         </h2>
+      
 
         {/* Stack */}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-6 justify-items-center mb-20">
@@ -107,6 +115,7 @@ export default function DevPortfolio() {
         {/* Projects */}
         <div className="grid gap-10 md:grid-cols-2">
           {filteredProjects.map((project, i) => (
+            
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
@@ -126,6 +135,19 @@ export default function DevPortfolio() {
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-300">{project.description}</p>
+                 {/* ✅ Affichage des tags */}
+                {project.tags && (
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-purple-700/30 border border-purple-400 text-purple-200 text-xs px-2 py-1 rounded-full"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <a
                   href={project.url}
                   target="_blank"
