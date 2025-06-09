@@ -86,8 +86,7 @@ export default function CreationProcess() {
             Le logo utilisé dans ce projet a été conçu via <strong>Canva</strong>, une plateforme intuitive de design graphique.
             Il symbolise mon identité visuelle et complète parfaitement l’univers 3D que je développe.
           </p>
-        </div>
-        {/* 3D Regab interactive */}
+          {/* 3D Regab interactive */}
         <div className="mt-24 text-center" data-aos="zoom-in-up">
           
             <Link
@@ -96,6 +95,7 @@ export default function CreationProcess() {
             >
               🍺 Voir la canette de Régab en 3D
             </Link> 
+        </div>
         </div>
       </div>
     </section>
