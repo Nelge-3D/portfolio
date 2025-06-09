@@ -12,7 +12,6 @@ import {
   SiReact,
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
-import ThreeDModelViewer from '@/components/portfolio/ThreeDModelviewer';
 import NavDevPortfolio from '@/components/portfolio/NavDevPortfolio';
 
 
@@ -45,8 +44,8 @@ const projects = [
   {
     title: 'Villa Rouge Réservation',
     url: 'https://villa-rouge.vercel.app',
-    image: '/projects/villarouge2.png',
-    description: "Plateforme de réservation d’hôtel avec une interface intuitive.",
+    image: '/projects/villa.png',
+    description: "Plateforme de réservation d’hôtel avec une interface intuitive. Avec système d'authentification firebase",
     category: 'Hôtellerie',
   },
 ];
@@ -159,11 +158,6 @@ export default function DevPortfolio() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* 3D Regab */}
-        <div className="mt-24">
-          <ThreeDModelViewer />
         </div>
       </div>
       <section className="mt-32 text-center">

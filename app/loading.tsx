@@ -1,31 +1,33 @@
-// components/Loading.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Loading = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000); // 3 secondes
+    const timer = setTimeout(() => setLoading(false), 1500); // 1 seconde
     return () => clearTimeout(timer);
   }, []);
 
-  if (!loading) return null;
-
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-full h-screen bg-gradient-to-br from-yellow-400 to-purple-800 flex items-center justify-center z-[9999]"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-white border-dashed rounded-full animate-spin mx-auto" />
-        <p className="mt-4 text-white text-lg font-semibold">Chargement en cours...</p>
-      </div>
-    </motion.div>
+    <AnimatePresence>
+      {loading && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-[#0f172a] to-[#1e293b]"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-center space-y-4">
+            <div className="w-12 h-12 border-4 border-white border-dashed rounded-full animate-spin mx-auto" />
+            <p className="text-white text-sm">Chargement en cours...</p>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

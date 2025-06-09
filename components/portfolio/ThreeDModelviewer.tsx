@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineRotateLeft } from 'react-icons/ai';
 
 function Model() {
-  const { scene } = useGLTF('/renders/Regab seul.glb');
+  const { scene } = useGLTF('/renders/regab-seul.glb');
   return (
     <Center>
       <primitive object={scene} scale={15} />

@@ -87,9 +87,9 @@ export default function Nav() {
           </div>
 
           {/* Logo image */}
-          <div className="relative w-36 h-20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-1">
+          <div className="relative w-33 h-17 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-1">
             <Image
-              src="/logo.png"
+              src="/logo-white.png"
               alt="Logo Nelge 3D"
               fill
               style={{ objectFit: 'contain' }}

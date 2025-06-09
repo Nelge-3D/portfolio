@@ -41,3 +41,23 @@
   animation: spin-reverse-slow linear infinite;
 }
 
+
+
+@layer utilities {
+  .active-pulse:active {
+    animation: pulse-click 0.2s ease-out;
+  }
+
+  @keyframes pulse-click {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.92);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+

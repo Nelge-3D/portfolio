@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Cursor from "@/components/Cursor"
 import Loading from "./loading";
 
 const geistSans = Geist({
@@ -31,7 +30,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Loading/>
-        <Cursor/>
         {children}
       </body>
     </html>
