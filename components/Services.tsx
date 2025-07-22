@@ -14,7 +14,7 @@ export default function Services() {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -27,11 +27,11 @@ export default function Services() {
   const services = [
     'Publicités 3D pour produits',
     'Modélisation de scènes réalistes',
-    'Animations de présentation',
-    'Texturing & lighting avancés',
-    'Visualisations architecturales',
-    'Direction artistique 3D',
-    'Design de concepts visuels',
+    'Animations de présentation (à venir)',
+    'Texturing & lighting avancés (à venir)',
+    'Visualisations architecturales (à venir)',
+    'Direction artistique 3D (à venir)',
+    'Design de concepts visuels (à venir)',
     '+ Et plus sur demande',
   ];
 
@@ -39,49 +39,38 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="bg-gradient-to-br from-[#2e0066] via-[#1a002b] to-black text-[#f5f3ed] py-20 px-6 md:px-16"
+      className="bg-gradient-to-br from-[#2e0066] via-[#1a002b] to-black text-[#f5f3ed] py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className={`text-lg font-medium mb-10 ${isVisible ? 'animate-fadeIn delay-150' : 'opacity-0'}`}>
+        <h2 className={`text-base sm:text-lg md:text-xl font-medium mb-6 sm:mb-8 md:mb-10 transition-opacity duration-500 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}>
           Mes services
         </h2>
-        <div className="space-y-4 text-4xl md:text-5xl font-medium leading-tight">
+        
+        <div className="grid gap-3 sm:gap-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-snug sm:leading-tight">
           {services.map((service, index) => (
-            <p
+            <div
               key={index}
-              className={`${
-                isVisible ? 'animate-fadeIn' : 'opacity-0'
-              } delay-${index * 150} ${
-                service.startsWith('+') ? 'text-[#6b6b6b]' : ''
+              className={`transition-all duration-500 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              {service}
-            </p>
+              <p className={`${
+                service.startsWith('+') ? 'text-gray-400' : 'text-[#f5f3ed]'
+              } hover:text-amber-300 transition-colors duration-300`}>
+                {service}
+              </p>
+              {index < services.length - 1 && (
+                <div className={`h-px bg-gradient-to-r from-transparent via-white/10 to-transparent w-full mt-3 sm:mt-4 ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                }`} style={{ transitionDelay: `${index * 100 + 50}ms` }} />
+              )}
+            </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease forwards;
-        }
-
-        .opacity-0 {
-          opacity: 0;
-        }
-      `}</style>
     </section>
   );
 }

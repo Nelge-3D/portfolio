@@ -28,11 +28,11 @@ const projects = [
     tags: ['UX/UI', 'Travail collaboratif'],
   },
   {
-    title: 'Site Auth NextAuth',
-    url: 'https://auth-theta-fawn.vercel.app',
-    image: '/projects/auth.png',
+    title: 'SAAS type behance',
+    url: 'https://artika.vercel.app/',
+    image: '/projects/artika.png',
     description: "Projet démonstratif d'authentification sécurisée avec NextAuth.js.",
-    category: 'Auth',
+    category: 'SAAS',
   },
   {
     title: 'Bellashop E-commerce',
@@ -60,7 +60,7 @@ const stack = [
   { icon: <SiReact />, label: 'React' },
 ];
 
-const categories = ['Tous', 'ONG', 'Auth', 'E-commerce', 'Hôtellerie'];
+const categories = ['Tous', 'ONG', 'SAAS', 'E-commerce', 'Hôtellerie'];
 
 export default function DevPortfolio() {
   const [activeCategory, setActiveCategory] = useState('Tous');

@@ -22,22 +22,22 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
+  const handleDownloadCV = () => {
+    const cvPath = '/My_CV.pdf';
+    const link = document.createElement('a');
+    link.href = cvPath;
+    link.download = 'My_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const introBlocks = [
-    "Je suis un passionné de 3D spécialisé dans la création de publicités visuelles et de scènes immersives. J'accorde une grande importance à l'esthétique, aux détails et à la narration visuelle.",
-    "Mon objectif est de donner vie à des idées grâce à Blender, Unity, ou Unreal Engine, en associant technologie et émotion. Chaque projet est conçu pour marquer les esprits et valoriser l'univers du client."
+    "🎯 Développeur Web & Mobile spécialisé en Next.js, TypeScript, Tailwind CSS, avec un usage intensif de l'intelligence artificielle comme copilote de développement (ChatGPT, GitHub Copilot, Continue...).",
+    "Grâce à l'IA, j'accélère l'écriture de code, automatise les tâches répétitives, améliore mes tests et me concentre sur la logique métier."
   ];
 
   const infoBlocks = [
-    {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-      title: "Philosophie de création",
-      content: "Créer avec intention, équilibrer technique et émotion, capturer l'essence d'un concept pour le rendre mémorable."
-    },
     {
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,17 +47,27 @@ export default function About() {
         </svg>
       ),
       title: "Compétences techniques",
-      content: "Blender • Unity • Unreal Engine • After Effects • Figma • Substance Painter • Photoshop"
+      content: "Next.js • TypeScript • Tailwind CSS • React • Node.js • PostgreSQL • Prisma • IA générative"
     },
     {
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
-                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
-      title: "Setup",
-      content: "PC RTX 4070 • 32Go RAM • Écran 2K 144Hz • Tablette Wacom Intuos Pro"
+      title: "Freelance 3D",
+      content: "👨‍💻 Designer 3D avec Blender, spécialisé en publicité produit et rendus immersifs (packshots, scènes animées)"
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} 
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+      title: "Écriture SFFF",
+      content: "✍️ Auteur amateur d'une saga SFFF (Science-Fiction, Fantastique, Fantasy) explorant l'introspection et l'aventure"
     },
     {
       icon: (
@@ -69,21 +79,14 @@ export default function About() {
       title: "Mon parcours",
       content: (
         <div className="space-y-2">
-          <div className="flex items-center space-x-3">
-            <div className="w-2 h-2 bg-amber-400 rounded-full flex-shrink-0"></div>
-            <span>2021 – Débuts sur Blender</span>
-          </div>
-          <div className="flex items-center space-x-3">
-            <div className="w-2 h-2 bg-amber-400/70 rounded-full flex-shrink-0"></div>
-            <span>2022 – Freelance en motion design</span>
-          </div>
+          
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-amber-400/50 rounded-full flex-shrink-0"></div>
-            <span>2023 – Intégration 3D web interactif</span>
+            <span>2024 – 3D design self learning</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-amber-400/30 rounded-full flex-shrink-0"></div>
-            <span>2024 – Portfolio & projets personnels</span>
+            <span>2025 – Développement web D-CLIC</span>
           </div>
         </div>
       )
@@ -96,14 +99,14 @@ export default function About() {
       ref={sectionRef}
       className="relative py-16 sm:py-20 lg:py-32 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden"
     >
-      {/* Effets de fond animés */}
+      {/* Background effects */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Titre principal */}
+        {/* Main title */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight bg-gradient-to-r from-white via-amber-200 to-amber-400 bg-clip-text text-transparent transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -115,7 +118,7 @@ export default function About() {
           }`}></div>
         </div>
 
-        {/* Blocs d'introduction */}
+        {/* Intro blocks */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-16 sm:mb-20 lg:mb-24">
           {introBlocks.map((text, i) => (
             <div
@@ -125,7 +128,6 @@ export default function About() {
               }`}
               style={{ transitionDelay: `${300 + i * 200}ms` }}
             >
-              {/* Effet de brillance au hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-400/0 via-amber-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
               
               <p className="relative text-white/90 text-base sm:text-lg lg:text-xl leading-relaxed font-light">
@@ -135,7 +137,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Grille des compétences */}
+        {/* Skills grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20">
           {infoBlocks.map(({ icon, title, content }, i) => (
             <div
@@ -145,7 +147,6 @@ export default function About() {
               }`}
               style={{ transitionDelay: `${700 + i * 150}ms` }}
             >
-              {/* Icône avec effet glow */}
               <div className="mb-4 transform group-hover:scale-110 transition-all duration-300">
                 <div className="text-amber-400 group-hover:text-amber-300 filter drop-shadow-lg group-hover:drop-shadow-xl group-hover:drop-shadow-amber-400/25 transition-all duration-300">
                   {icon}
@@ -163,28 +164,25 @@ export default function About() {
           ))}
         </div>
 
-        {/* Bouton CV modernisé */}
+        {/* CV Download button */}
         <div className="text-center">
-          <a
-            href="/CV_MonNom.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={handleDownloadCV}
             className={`group relative inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold text-base sm:text-lg shadow-2xl hover:shadow-amber-500/50 transition-all duration-500 hover:-translate-y-2 hover:scale-105 overflow-hidden ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
             style={{ transitionDelay: '1200ms' }}
           >
-            {/* Effet de brillance animé */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             
             <span className="relative flex items-center space-x-3">
-              <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-black/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <span>Télécharger mon CV</span>
             </span>
-          </a>
+          </button>
         </div>
       </div>
     </section>

@@ -135,13 +135,11 @@ export default function Header() {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="#stats" className="group relative px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-semibold rounded overflow-hidden transition-all duration-300 hover:from-amber-400 hover:to-yellow-400 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25">
-                <span className="relative z-10">Découvrir nos créations</span>
+                <span className="relative z-10">Découvrir mes créations</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
               </Link>
               
-              <button className="group relative px-8 py-4 border-2 border-amber-400/50 text-amber-100 font-semibold rounded backdrop-blur-sm bg-white/5 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400/10 hover:scale-105">
-                <span className="relative z-10">Nous contacter</span>
-              </button>
+              
             </div>
           </div>
 

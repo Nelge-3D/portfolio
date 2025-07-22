@@ -86,18 +86,18 @@ export default function CreationProcess() {
             Le logo utilisé dans ce projet a été conçu via <strong>Canva</strong>, une plateforme intuitive de design graphique.
             Il symbolise mon identité visuelle et complète parfaitement l’univers 3D que je développe.
           </p>
-          {/* 3D Regab interactive */}
+        </div>
+      </div>
+        {/* 3D Regab interactive */}
         <div className="mt-24 text-center" data-aos="zoom-in-up">
-          
             <Link
               href="/canette-3d" // Remplace ceci par le bon lien ou une URL externe si nécessaire
               className="inline-block px-8 py-4 text-white font-bold text-lg bg-yellow-500 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse ring-2 ring-yellow-300"
             >
               🍺 Voir la canette de Régab en 3D
             </Link> 
+          
         </div>
-        </div>
-      </div>
     </section>
   );
 }
