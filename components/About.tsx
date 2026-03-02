@@ -23,17 +23,17 @@ export default function About() {
   }, []);
 
   const handleDownloadCV = () => {
-    const cvPath = '/My_CV.pdf';
+    const cvPath = '/CV NGABI EBAMANGOYE Louis-Gériel.pdf';
     const link = document.createElement('a');
     link.href = cvPath;
-    link.download = 'My_CV.pdf';
+    link.download = 'CV NGABI EBAMANGOYE Louis-Gériel.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   const introBlocks = [
-    "🎯 Développeur Web & Mobile spécialisé en Next.js, TypeScript, Tailwind CSS, avec un usage intensif de l'intelligence artificielle comme copilote de développement (ChatGPT, GitHub Copilot, Continue...).",
+    "🎯 Développeur Web & Mobile spécialisé en Next.js, TypeScript, Tailwind CSS, avec un usage de l'intelligence artificielle comme copilote de développement (ChatGPT, GitHub Copilot, Continue...).",
     "Grâce à l'IA, j'accélère l'écriture de code, automatise les tâches répétitives, améliore mes tests et me concentre sur la logique métier."
   ];
 
