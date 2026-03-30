@@ -12,7 +12,6 @@ import {
   SiReact,
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
-import NavDevPortfolio from '@/components/portfolio/NavDevPortfolio';
 
 
 
@@ -72,7 +71,6 @@ export default function DevPortfolio() {
 
       return (
         <section className="bg-gray-900 text-white min-h-screen py-50 px-4 md:px-12">
-          <NavDevPortfolio/>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-10">
           🚀 Portfolio Développeur

@@ -8,7 +8,6 @@ import ModalViewer from '@/components/portfolio/ModalViewer';
 import FilterButton from '@/components/portfolio/FilterButton';
 import { Orbitron } from 'next/font/google';
 import CreationProcess from '@/components/portfolio/CreationProcess';
-import NavPortfolio from '@/components/portfolio/NavPortfolio';
 
 // Définition du type pour les éléments du portfolio
 type Item = {
@@ -62,7 +61,7 @@ export default function Portfolio() {
 
   return (
     <>
-      <NavPortfolio/>
+      
 
       <section className="bg-gradient-to-b from-gray-900 to-black text-white py-24 px-4 md:px-12 pt-40">
         <div className="max-w-7xl mx-auto text-center">

@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Loading from "@/app/loading"
 import Header from "@/components/Hero";
 
 
@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
   
     <main>
+      <Loading/>
       <Header/>
       {children}
-      <Footer/>
     </main>
   );
 }
