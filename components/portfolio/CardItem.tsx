@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { PlayCircle } from 'lucide-react';
 
 type Item = {
@@ -14,6 +14,27 @@ type Props = {
 };
 
 export default function CardItem({ item, onClick }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       data-aos="fade-up"
@@ -32,11 +53,12 @@ export default function CardItem({ item, onClick }: Props) {
       ) : (
         <div className="relative h-72">
           <video
+            ref={videoRef}
             src={item.src}
             className="w-full h-full object-cover rounded-t-3xl"
             muted
             loop
-            autoPlay
+            preload="none"
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
             <PlayCircle className="text-white w-12 h-12" />

@@ -82,7 +82,7 @@ export default function Canette3DPage() {
   }, []);
 
   return (
-    <div className="w-full bg-gradient-to-br from-black via-gray-900 to-black py-8 md:py-16 px-4 md:px-20 min-h-screen">
+    <div className="w-full bg-gradient-to-br from-black via-gray-900 to-black pt-28 pb-8 md:pt-32 md:pb-16 px-4 md:px-20 min-h-screen">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
 
         {/* Texte descriptif */}

@@ -4,6 +4,8 @@ import { Orbitron } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
 
 export default function CreationProcess() {
@@ -36,6 +38,8 @@ export default function CreationProcess() {
               alt="Wireframe"
               width={600}
               height={400}
+              placeholder="blur"
+              blurDataURL={BLUR_PLACEHOLDER}
               className="rounded-lg shadow-md w-full h-auto"
             />
           </div>
@@ -57,6 +61,8 @@ export default function CreationProcess() {
               alt="Solid Mode"
               width={600}
               height={400}
+              placeholder="blur"
+              blurDataURL={BLUR_PLACEHOLDER}
               className="rounded-lg shadow-md w-full h-auto"
             />
           </div>
@@ -69,6 +75,8 @@ export default function CreationProcess() {
             alt="Rendu Final"
             width={800}
             height={500}
+            placeholder="blur"
+            blurDataURL={BLUR_PLACEHOLDER}
             className="rounded-lg shadow-md mb-6 w-full h-auto"
           />
           <h4 className="text-2xl font-semibold mb-2">Étape 3 : Rendu Final</h4>

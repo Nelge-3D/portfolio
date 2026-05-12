@@ -122,6 +122,8 @@ export default function Nav() {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push(`/${href}`);
     }
   };
 

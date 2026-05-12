@@ -13,6 +13,8 @@ import {
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
 
+const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
 
 
 
@@ -41,11 +43,11 @@ const projects = [
     category: 'E-commerce',
   },
   {
-    title: 'Villa Rouge Réservation',
-    url: 'https://villa-rouge.vercel.app',
-    image: '/projects/villa.png',
-    description: "Plateforme de réservation d’hôtel avec une interface intuitive. Avec système d'authentification firebase",
-    category: 'Hôtellerie',
+    title: "FastExpress - Agence de livraison",
+    url: "https://www.fastexpress.ga/",
+    image: "/projects/fastexpress.png",
+    description: "Site officiel de l'agence de livraison FastExpress au Gabon. Commande en ligne, suivi de colis et service client.",
+    category: "Livraison",
   },
 ];
 
@@ -59,7 +61,7 @@ const stack = [
   { icon: <SiReact />, label: 'React' },
 ];
 
-const categories = ['Tous', 'ONG', 'SAAS', 'E-commerce', 'Hôtellerie'];
+const categories = ['Tous', 'ONG', 'SAAS', 'E-commerce', 'Livraison'];
 
 export default function DevPortfolio() {
   const [activeCategory, setActiveCategory] = useState('Tous');
@@ -126,6 +128,8 @@ export default function DevPortfolio() {
                   alt={project.title}
                   width={600}
                   height={300}
+                  placeholder="blur"
+                  blurDataURL={BLUR_PLACEHOLDER}
                   className="w-full h-48 object-cover"
                 />
               </a>
