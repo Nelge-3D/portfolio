@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       animation: {
         fadeIn: 'fadeIn 0.3s ease-out',
+        'spin-slow': 'spin 8s linear infinite',
+        'spin-reverse-slow': 'spin 8s linear infinite reverse',
       },
       keyframes: {
         fadeIn: {

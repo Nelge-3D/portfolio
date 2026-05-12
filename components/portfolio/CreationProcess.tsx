@@ -3,7 +3,6 @@ import React from 'react';
 import { Orbitron } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from "react";
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
 

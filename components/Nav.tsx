@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { Menu, X, Volume2, VolumeX, ChevronRight, Code, Box } from 'lucide-react';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import Link from 'next/link';
 import Welcome from './Welcome';
 
 export default function Nav() {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -69,7 +71,7 @@ export default function Nav() {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -125,8 +127,7 @@ export default function Nav() {
 
   const handlePortfolioClick = (href: string) => {
     setMenuOpen(false);
-    // Navigation vers les pages portfolio
-    window.location.href = href;
+    router.push(href);
   };
 
   return (
@@ -337,15 +338,11 @@ export default function Nav() {
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.href, item.id)}
-                  className={clsx(
-                    'group relative w-full text-left transition-all duration-300',
-                    'transform hover:translate-x-2',
-                    'animate-in fade-in slide-in-from-right-10',
-                    `delay-${index * 100}`
-                  )}
+                  className="group relative w-full text-left transition-all duration-300 transform hover:translate-x-2 animate-in fade-in slide-in-from-right-10"
                   style={{
                     animationDuration: '400ms',
-                    animationFillMode: 'backwards'
+                    animationFillMode: 'backwards',
+                    animationDelay: `${index * 100}ms`,
                   }}
                 >
                   <div className="flex items-center justify-between py-4 border-b border-white/10 group-hover:border-amber-400/50 transition-colors">
@@ -379,15 +376,11 @@ export default function Nav() {
                   <button
                     key={link.id}
                     onClick={() => handlePortfolioClick(link.href)}
-                    className={clsx(
-                      'group relative w-full text-left transition-all duration-300',
-                      'transform hover:translate-x-2',
-                      'animate-in fade-in slide-in-from-right-10',
-                      `delay-${(navItems.length + index) * 100}`
-                    )}
+                    className="group relative w-full text-left transition-all duration-300 transform hover:translate-x-2 animate-in fade-in slide-in-from-right-10"
                     style={{
                       animationDuration: '400ms',
-                      animationFillMode: 'backwards'
+                      animationFillMode: 'backwards',
+                      animationDelay: `${(navItems.length + index) * 100}ms`,
                     }}
                   >
                     <div className="flex items-center justify-between py-3 border-b border-white/10 group-hover:border-amber-400/50 transition-colors">
@@ -423,31 +416,6 @@ export default function Nav() {
       {/* Audio element */}
       <audio ref={audioRef} loop preload="auto" src="/slowlife.mp3" />
 
-      {/* Styles d'animation globaux */}
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        .animate-in {
-          animation: slideIn 0.4s ease-out forwards;
-        }
-        
-        .delay-0 { animation-delay: 0ms; }
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .delay-600 { animation-delay: 600ms; }
-      `}</style>
     </>
   );
 }

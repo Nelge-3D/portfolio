@@ -17,7 +17,7 @@ export default function Header() {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -34,9 +34,11 @@ export default function Header() {
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/Hero.png"
       >
+        <source src="/Hero_v1.webm" type="video/webm" />
         <source src="/Hero_v1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
 
       {/* Dynamic Gradient Overlay */}
@@ -179,26 +181,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Enhanced Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(5deg); }
-        }
-        
-        @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.5); }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-      `}</style>
     </header>
   );
 }

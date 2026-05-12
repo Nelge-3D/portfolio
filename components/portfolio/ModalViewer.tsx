@@ -2,7 +2,7 @@
 import { X } from 'lucide-react';
 
 type Props = {
-  modal: { type: 'image' | 'video'; src: string };
+  modal: { type: 'image' | 'video'; src: string; title: string };
   onClose: () => void;
 };
 
@@ -18,7 +18,7 @@ export default function ModalViewer({ modal, onClose }: Props) {
       </button>
       <div className="max-w-5xl w-full relative bg-neutral-900 rounded-xl border border-neutral-700 ring-1 ring-neutral-600 shadow-2xl">
         {modal.type === 'image' ? (
-          <img src={modal.src} className="w-full h-auto rounded-xl" />
+          <img src={modal.src} alt={modal.title} className="w-full h-auto rounded-xl" />
         ) : (
           <video src={modal.src} controls className="w-full h-auto rounded-xl" />
         )}

@@ -55,7 +55,7 @@ export default function Footer() {
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
               <Youtube size={22} />
             </a>
-            <a href="mailto:tonmail@example.com" className="hover:text-amber-400 transition">
+            <a href="mailto:louisgeriel.ngabi@gmail.com" className="hover:text-amber-400 transition">
               <Mail size={22} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">

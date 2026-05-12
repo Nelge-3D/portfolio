@@ -1,4 +1,5 @@
 'use client';
+import styles from './Testimonials.module.css';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowLeft, ArrowRight, Quote, Star } from 'lucide-react';
 
@@ -157,8 +158,8 @@ export default function Testimonials() {
               shadow-lg sm:shadow-xl md:shadow-2xl 
               border border-white/10 
               transition-all duration-500 ease-out 
-              ${direction === 1 ? 'animate-slide-in-right' : 
-                direction === -1 ? 'animate-slide-in-left' : ''}
+              ${direction === 1 ? styles.animateSlideInRight :
+                direction === -1 ? styles.animateSlideInLeft : ''}
             `}
             key={current}
           >
@@ -274,53 +275,6 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Animations CSS */}
-      <style jsx>{`
-        @keyframes slide-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes slide-in-left {
-          from {
-            opacity: 0;
-            transform: translateX(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        .animate-slide-in-right {
-          animation: slide-in-right 0.5s ease-out forwards;
-        }
-        
-        .animate-slide-in-left {
-          animation: slide-in-left 0.5s ease-out forwards;
-        }
-        
-        @media (max-width: 640px) {
-          .animate-slide-in-right,
-          .animate-slide-in-left {
-            animation-duration: 0.3s;
-          }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

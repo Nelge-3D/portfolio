@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CardItem from '@/components/portfolio/CardItem';
@@ -8,56 +8,27 @@ import ModalViewer from '@/components/portfolio/ModalViewer';
 import FilterButton from '@/components/portfolio/FilterButton';
 import { Orbitron } from 'next/font/google';
 import CreationProcess from '@/components/portfolio/CreationProcess';
-
-// Définition du type pour les éléments du portfolio
-type Item = {
-  type: 'image' | 'video';
-  src: string;
-  title: string;
-};
-
-const items: Item[] = [
-  { type: 'image', src: '/renders/modele1.png', title: 'Modèle 3D 1' },
-  { type: 'video', src: '/renders/video4.mp4', title: 'Animation 3D 4' },
-  { type: 'video', src: '/renders/video1.mp4', title: 'Animation 3D 1' },
-  { type: 'image', src: '/renders/modele3.png', title: 'Modèle 3D 3' },
-  { type: 'image', src: '/renders/modele2.png', title: 'Modèle 3D 2' },
-  { type: 'video', src: '/renders/video2.mp4', title: 'Animation 3D 2' },
-  { type: 'video', src: '/renders/video3.mp4', title: 'Animation 3D 3' },
-  { type: 'image', src: '/renders/modele5.png', title: 'Modèle 3D 5' },
-  { type: 'image', src: '/renders/modele_4.png', title: 'Modèle 3D 4' },
-];
+import { portfolioItems, type PortfolioItem } from '@/data/portfolioItems';
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
 
 export default function Portfolio() {
   
-  const [isScrolled, setIsScrolled] = useState(false);
- 
   const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
-  const [modal, setModal] = useState<Item | null>(null);
+  const [modal, setModal] = useState<PortfolioItem | null>(null);
 
 
   useEffect(() => {
-    AOS.init({ duration: 800 });
+    AOS.init({ duration: 800, once: true });
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  
 
 
 
 
 
   
-  const filteredItems = items.filter(item => filter === 'all' || item.type === filter);
+  const filteredItems = portfolioItems.filter((item) => filter === 'all' || item.type === filter);
 
   return (
     <>
@@ -77,8 +48,8 @@ export default function Portfolio() {
           </div>
 
           <div data-aos="fade-up-right" className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredItems.map((item, i) => (
-              <CardItem key={i} item={item} onClick={() => setModal(item)} />
+            {filteredItems.map((item) => (
+              <CardItem key={item.src} item={item} onClick={() => setModal(item)} />
             ))}
           </div>
         </div>
