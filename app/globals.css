@@ -1,2 +1,83 @@
 @import "tailwindcss";
 
+/* ── Fonts ── */
+@theme {
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+/* ── Purple / Gold design tokens ── */
+:root {
+  /* Purple scale */
+  --purple-deepest: #07000f;
+  --purple-dark:    #0f0020;
+  --purple-mid:     #1e0040;
+  --purple-glow:    rgba(124, 58, 237, 0.15);
+
+  /* Gold scale */
+  --gold-deepest:   #0c0800;
+  --gold-dark:      #18100000;
+  --gold-mid:       #2a1800;
+  --gold-glow:      rgba(251, 191, 36, 0.12);
+
+  /* Typography utility */
+  --tracking-display: -0.03em;
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body, 'Space Grotesk', system-ui, sans-serif);
+}
+
+/* ── Display font helper ── */
+.font-display {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+}
+.font-body {
+  font-family: var(--font-body, 'Space Grotesk', system-ui, sans-serif);
+}
+
+/* ── Purple gradient text ── */
+.text-purple-gold {
+  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 40%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Gold gradient text ── */
+.text-gold-shimmer {
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Glow effects ── */
+.glow-purple {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.2), 0 0 80px rgba(124, 58, 237, 0.08);
+}
+.glow-gold {
+  box-shadow: 0 0 40px rgba(251, 191, 36, 0.2), 0 0 80px rgba(251, 191, 36, 0.08);
+}
+
+/* ── Grain texture overlay ── */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/grain.png');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #07000f; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7c3aed, #d97706);
+  border-radius: 2px;
+}

@@ -1,110 +1,153 @@
 'use client';
 import React from 'react';
-import { Orbitron } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+const BLUR =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
-const orbitron = Orbitron({ subsets: ['latin'], weight: ['600'] });
+const steps = [
+  {
+    number: '01',
+    title: 'Wireframe',
+    body:
+      "Modélisation de la structure de base en fil de fer dans Blender, permettant d'avoir une vision claire de la topologie. Cette étape sert à poser les fondations du modèle 3D avec une géométrie propre et optimisée.",
+    image: '/renders/wireframe.png',
+    alt: 'Wireframe',
+    reverse: false,
+  },
+  {
+    number: '02',
+    title: 'Mode Solide & UV Mapping',
+    body:
+      "Une fois les formes solides appliquées, j'effectue le UV Unwrapping — une étape essentielle pour déplier le modèle 3D en 2D, afin d'y appliquer correctement des textures. Cela garantit un rendu fidèle et réaliste lors du texturage.",
+    image: '/renders/solid.png',
+    alt: 'Solid Mode',
+    reverse: true,
+  },
+];
 
 export default function CreationProcess() {
-
   return (
-    <section className="bg-[#0a192f] text-white py-20 px-4 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        <h3 className={`${orbitron.className} text-4xl font-bold text-center mb-16`}>
-          Processus de Création 3D
-        </h3>
+    <section className="relative bg-[#0c0800] text-white py-24 px-4 md:px-12 overflow-hidden">
+      {/* Ambient gold blob */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-amber-500/5 blur-[80px] rounded-full" />
 
-        <p className="text-center text-neutral-300 max-w-3xl mx-auto mb-10 text-sm md:text-base">
-          Pour la réalisation de ces projets 3D, j'utilise exclusivement <strong>Blender</strong>, un logiciel open-source puissant
-          de modélisation, rendu et animation. De la structure initiale jusqu’au rendu final, tout est conçu dans Blender
-          avec une attention particulière aux détails et à l’optimisation.
-        </p>
+      <div className="relative max-w-6xl mx-auto">
+        {/* Section header */}
+        <div data-aos="fade-up" className="text-center mb-20">
+          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-amber-500/70 mb-4">
+            Blender · Workflow
+          </p>
+          <h3
+            className="font-display text-4xl md:text-5xl font-light italic text-amber-100"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Processus de Création
+          </h3>
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-amber-400/50" />
+            <div className="w-1 h-1 rounded-full bg-violet-400/60" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-400/50" />
+          </div>
 
-        {/* Étape 1 */}
-        <div data-aos="fade-up" className="flex flex-col md:flex-row items-center gap-8 mb-16">
-          <div className="w-full md:w-1/2 text-left order-2 md:order-1">
-            <h4 className="text-2xl font-semibold mb-2">Étape 1 : Wireframe</h4>
-            <p className="text-sm text-neutral-300">
-              Modélisation de la structure de base en fil de fer dans Blender, permettant d’avoir une vision claire de la
-              topologie. Cette étape sert à poser les fondations du modèle 3D avec une géométrie propre et optimisée.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 order-1 md:order-2">
-            <Image
-              src="/renders/wireframe.png"
-              alt="Wireframe"
-              width={600}
-              height={400}
-              placeholder="blur"
-              blurDataURL={BLUR_PLACEHOLDER}
-              className="rounded-lg shadow-md w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Étape 2 */}
-        <div data-aos="fade-up" data-aos-delay="100" className="flex flex-col md:flex-row-reverse items-center gap-8 mb-16">
-          <div className="w-full md:w-1/2 text-left">
-            <h4 className="text-2xl font-semibold mb-2">Étape 2 : Mode Solide & UV Mapping</h4>
-            <p className="text-sm text-neutral-300">
-              Une fois les formes solides appliquées, j’effectue le <strong>UV Unwrapping</strong> — une étape essentielle
-              pour déplier le modèle 3D en 2D, afin d’y appliquer correctement des textures. Cela garantit un rendu fidèle et
-              réaliste lors du texturage.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2">
-            <Image
-              src="/renders/solid.png"
-              alt="Solid Mode"
-              width={600}
-              height={400}
-              placeholder="blur"
-              blurDataURL={BLUR_PLACEHOLDER}
-              className="rounded-lg shadow-md w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Étape 3 */}
-        <div data-aos="fade-up" data-aos-delay="200" className="text-center max-w-3xl mx-auto mb-16">
-          <Image
-            src="/renders/final.png"
-            alt="Rendu Final"
-            width={800}
-            height={500}
-            placeholder="blur"
-            blurDataURL={BLUR_PLACEHOLDER}
-            className="rounded-lg shadow-md mb-6 w-full h-auto"
-          />
-          <h4 className="text-2xl font-semibold mb-2">Étape 3 : Rendu Final</h4>
-          <p className="text-sm text-neutral-300">
-            Ajout des matériaux, textures, éclairage HDRI et post-traitement dans Blender. Le rendu final met en valeur le
-            modèle avec une ambiance visuelle forte et professionnelle.
+          <p className="font-body text-amber-200/50 max-w-2xl mx-auto mt-8 text-sm md:text-base leading-relaxed">
+            Pour la réalisation de ces projets, j&apos;utilise exclusivement{' '}
+            <strong className="text-amber-300 font-medium">Blender</strong> — logiciel open-source de modélisation, rendu et animation.
+            De la structure initiale jusqu&apos;au rendu final, tout est conçu avec une attention aux détails et à l&apos;optimisation.
           </p>
         </div>
 
-        {/* Logo */}
-        <div data-aos="fade-up" data-aos-delay="300" className="text-center max-w-2xl mx-auto">
-          <h4 className="text-xl font-semibold mb-2">Création du Logo</h4>
-          <p className="text-sm text-neutral-300">
-            Le logo utilisé dans ce projet a été conçu via <strong>Canva</strong>, une plateforme intuitive de design graphique.
-            Il symbolise mon identité visuelle et complète parfaitement l’univers 3D que je développe.
+        {/* Steps */}
+        {steps.map((step) => (
+          <div
+            key={step.number}
+            data-aos="fade-up"
+            className={`flex flex-col ${step.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-10 mb-20`}
+          >
+            {/* Text */}
+            <div className="w-full md:w-1/2">
+              <p className="font-display text-6xl font-light italic text-amber-500/15 mb-2 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+                {step.number}
+              </p>
+              <h4
+                className="font-display text-2xl font-medium italic text-amber-200 mb-3"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {step.title}
+              </h4>
+              <p className="font-body text-sm text-amber-200/50 leading-relaxed">{step.body}</p>
+            </div>
+
+            {/* Image */}
+            <div className="w-full md:w-1/2 group">
+              <div className="relative overflow-hidden rounded-2xl border border-amber-400/10 hover:border-amber-400/25 transition-all duration-500 hover:shadow-xl hover:shadow-amber-500/10">
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  width={640}
+                  height={400}
+                  placeholder="blur"
+                  blurDataURL={BLUR}
+                  className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Step 03 — Final render */}
+        <div data-aos="fade-up" className="text-center max-w-3xl mx-auto mb-20">
+          <div className="relative overflow-hidden rounded-2xl border border-amber-400/10 hover:border-amber-400/25 transition-all duration-500 hover:shadow-xl hover:shadow-amber-500/10 mb-8">
+            <Image
+              src="/renders/final.png"
+              alt="Rendu Final"
+              width={900}
+              height={560}
+              placeholder="blur"
+              blurDataURL={BLUR}
+              className="w-full h-auto hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <p className="font-display text-6xl font-light italic text-amber-500/15 mb-1 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+            03
           </p>
+          <h4
+            className="font-display text-2xl font-medium italic text-amber-200 mb-3"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Rendu Final
+          </h4>
+          <p className="font-body text-sm text-amber-200/50 leading-relaxed">
+            Ajout des matériaux, textures, éclairage HDRI et post-traitement dans Blender. Le rendu final met en valeur
+            le modèle avec une ambiance visuelle forte et professionnelle.
+          </p>
+        </div>
+
+        {/* Logo mention */}
+        <div data-aos="fade-up" className="text-center max-w-xl mx-auto mb-16">
+          <h4
+            className="font-display text-xl font-medium italic text-amber-300/70 mb-2"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Identité visuelle
+          </h4>
+          <p className="font-body text-sm text-amber-200/40">
+            Le logo a été conçu via <strong className="text-amber-300/70 font-medium">Canva</strong> et complète l&apos;univers 3D développé dans ce portfolio.
+          </p>
+        </div>
+
+        {/* CTA canette */}
+        <div data-aos="zoom-in-up" className="text-center">
+          <Link
+            href="/canette-3d"
+            className="font-body inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-400/30 bg-amber-500/10 text-amber-300 hover:border-amber-400/70 hover:bg-amber-500/20 hover:text-white hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-400 text-sm font-medium tracking-wide"
+          >
+            <span className="text-lg">🍺</span>
+            Voir la canette Régab en 3D interactive
+          </Link>
         </div>
       </div>
-        {/* 3D Regab interactive */}
-        <div className="mt-24 text-center" data-aos="zoom-in-up">
-            <Link
-              href="/canette-3d" // Remplace ceci par le bon lien ou une URL externe si nécessaire
-              className="inline-block px-8 py-4 text-white font-bold text-lg bg-yellow-500 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse ring-2 ring-yellow-300"
-            >
-              🍺 Voir la canette de Régab en 3D
-            </Link> 
-          
-        </div>
     </section>
   );
 }

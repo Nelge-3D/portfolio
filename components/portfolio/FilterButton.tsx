@@ -12,10 +12,10 @@ export default function FilterButton({ label, isActive, onClick }: Props) {
     <button
       aria-label={`Filtrer par ${label}`}
       onClick={onClick}
-      className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${
+      className={`font-body text-xs px-6 py-2.5 rounded-full border transition-all duration-300 tracking-wide ${
         isActive
-          ? 'bg-amber-400 text-white border-amber-400 shadow-md'
-          : ' text-white hover:bg-amber-400 border-gray-300'
+          ? 'bg-amber-500 border-amber-400 text-black font-semibold shadow-lg shadow-amber-500/30'
+          : 'bg-amber-950/20 border-amber-400/15 text-amber-400/70 hover:border-amber-400/40 hover:text-amber-300'
       }`}
     >
       {label}

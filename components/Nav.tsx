@@ -141,9 +141,9 @@ export default function Nav() {
         ref={navRef}
         className={clsx(
           'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out',
-          isScrolled 
-            ? 'bg-gradient-to-b from-black/95 via-black/90 to-transparent backdrop-blur-xl border-b border-white/10' 
-            : 'bg-gradient-to-b from-black/50 via-transparent to-transparent',
+          isScrolled
+            ? 'bg-gradient-to-b from-[#07000f]/95 via-[#07000f]/90 to-transparent backdrop-blur-xl border-b border-violet-400/10'
+            : 'bg-gradient-to-b from-[#07000f]/60 via-transparent to-transparent',
           'shadow-2xl'
         )}
       >
@@ -208,15 +208,15 @@ export default function Nav() {
                 <span className={clsx(
                   'text-sm lg:text-base font-medium tracking-wide transition-all duration-300',
                   activeSection === item.id 
-                    ? 'text-amber-400' 
-                    : 'text-white/80 group-hover:text-white'
+                    ? 'text-amber-300'
+                    : 'text-violet-200/70 group-hover:text-white'
                 )}>
                   {item.label}
                 </span>
                 
                 {/* Indicateur actif */}
                 <span className={clsx(
-                  'absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300',
+                  'absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-violet-400 to-amber-400 transition-all duration-300',
                   activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                 )} />
               </button>
@@ -240,7 +240,7 @@ export default function Nav() {
                 </div>
                 
                 {/* Indicateur de survol */}
-                <span className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-500 w-0 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-violet-400 to-amber-400 w-0 group-hover:w-full transition-all duration-300" />
               </button>
             ))}
 
@@ -250,9 +250,9 @@ export default function Nav() {
               className={clsx(
                 'relative flex items-center justify-center transition-all duration-300',
                 'w-9 h-9 rounded-full border-2',
-                isPlaying 
-                  ? 'border-amber-400 bg-amber-400/10 text-amber-400 hover:bg-amber-400/20' 
-                  : 'border-white/30 bg-white/5 text-white/70 hover:border-white/50 hover:text-white',
+                isPlaying
+                  ? 'border-amber-400/60 bg-amber-400/10 text-amber-400 hover:bg-amber-400/20'
+                  : 'border-violet-400/20 bg-violet-950/30 text-violet-300/70 hover:border-violet-400/50 hover:text-white',
                 'group'
               )}
               aria-label={isPlaying ? 'Mettre en pause' : 'Activer la musique'}
@@ -310,7 +310,7 @@ export default function Nav() {
         {/* Overlay sombre */}
         <div
           className={clsx(
-            'absolute inset-0 bg-gradient-to-br from-black/95 via-black/90 to-black/95 backdrop-blur-md transition-opacity duration-500',
+            'absolute inset-0 bg-gradient-to-br from-[#07000f]/97 via-[#100020]/95 to-[#07000f]/97 backdrop-blur-md transition-opacity duration-500',
             menuOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setMenuOpen(false)}

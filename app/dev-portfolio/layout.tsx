@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
   title: 'Portfolio Développeur',
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function DevPortfolioLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageTransition duration={2500} theme="purple" label="Chargement du portfolio dev" />
+      {children}
+    </>
+  );
 }

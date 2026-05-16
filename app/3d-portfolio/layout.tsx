@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
   title: 'Portfolio 3D',
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function Portfolio3DLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageTransition duration={2500} theme="gold" label="Chargement des assets 3D" />
+      {children}
+    </>
+  );
 }

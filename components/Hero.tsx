@@ -22,7 +22,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header id="hero" className="relative h-screen w-full overflow-hidden bg-black">
+    <header id="hero" className="relative h-screen w-full overflow-hidden bg-[#07000f]">
       {/* Background Video with Enhanced Effects */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover transition-all duration-700 ease-out"
@@ -42,19 +42,19 @@ export default function Header() {
       </video>
 
       {/* Dynamic Gradient Overlay */}
-      <div 
+      <div
         className="absolute inset-0 transition-all duration-1000 ease-out"
         style={{
           background: `
-            radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
-              rgba(245, 158, 11, 0.15) 0%, 
-              rgba(0, 0, 0, 0.4) 25%, 
-              rgba(0, 0, 0, 0.8) 100%
+            radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%,
+              rgba(124, 58, 237, 0.18) 0%,
+              rgba(7, 0, 15, 0.45) 25%,
+              rgba(7, 0, 15, 0.85) 100%
             ),
-            linear-gradient(135deg, 
-              rgba(0, 0, 0, 0.6) 0%, 
-              rgba(0, 0, 0, 0.3) 50%, 
-              rgba(0, 0, 0, 0.7) 100%
+            linear-gradient(135deg,
+              rgba(7, 0, 15, 0.65) 0%,
+              rgba(16, 0, 32, 0.35) 50%,
+              rgba(7, 0, 15, 0.75) 100%
             )
           `
         }}
@@ -68,7 +68,7 @@ export default function Header() {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-amber-400/30 rounded-full animate-pulse"
+            className={`absolute w-2 h-2 rounded-full animate-pulse ${i % 2 === 0 ? 'bg-violet-400/25' : 'bg-amber-400/20'}`}
             style={{
               left: `${20 + i * 15}%`,
               top: `${30 + (i % 3) * 20}%`,
@@ -96,16 +96,15 @@ export default function Header() {
                 }`}
               >
                 {/* Margin bottom optimisé */}
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-3 sm:mb-4 md:mb-6 text-white relative">
-                  <span className="relative inline-block">
+                <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light italic mb-3 sm:mb-4 md:mb-6 text-white relative" style={{ fontFamily: 'var(--font-display)' }}>
+                  <span className="relative inline-block bg-gradient-to-br from-white via-violet-100 to-violet-300 bg-clip-text text-transparent">
                     Nelge
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-amber-200 to-white bg-clip-text text-transparent animate-pulse" />
                   </span>
                   <span className="relative ml-2 sm:ml-3 md:ml-4 inline-block">
-                    <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-300 bg-clip-text text-transparent font-extrabold">
+                    <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
                       3D
                     </span>
-                    <div className="absolute -inset-1 bg-gradient-to-r from-amber-400/20 to-yellow-400/20 blur-lg rounded-lg" />
+                    <div className="absolute -inset-2 bg-gradient-to-r from-amber-400/15 to-violet-500/15 blur-xl rounded-xl" />
                   </span>
                 </h1>
               </div>
@@ -117,10 +116,10 @@ export default function Header() {
                 }`}
               >
                 {/* Margin bottom optimisé */}
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-5 md:mb-6 font-light text-amber-100 leading-relaxed">
-                  <span className="font-semibold text-amber-300">Donner vie à l'imaginaire</span>
+                <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-5 md:mb-6 font-light italic text-violet-100/80 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
+                  <span className="text-amber-300">Donner vie à l&apos;imaginaire</span>
                   <br />
-                  <span className="text-base sm:text-lg md:text-xl text-gray-300">"un pixel à la fois"</span>
+                  <span className="text-base sm:text-lg md:text-xl text-violet-200/50">&ldquo;un pixel à la fois&rdquo;</span>
                 </p>
               </div>
 
@@ -144,21 +143,19 @@ export default function Header() {
               >
                 {/* Gap responsive pour les boutons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center">
-                  <Link 
-                    href="#stats" 
-                    className="group relative px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-semibold rounded overflow-hidden transition-all duration-300 hover:from-amber-400 hover:to-yellow-400 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 text-sm sm:text-base md:text-lg w-auto min-w-[200px] sm:min-w-[220px] md:min-w-[240px]"
+                  <Link
+                    href="#stats"
+                    className="group font-body relative px-7 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold text-sm shadow-xl shadow-amber-500/25 hover:shadow-amber-400/40 hover:scale-105 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
                   >
                     <span className="relative z-10">Découvrir mes créations</span>
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                   </Link>
-                  
-                  {/* Bouton secondaire optionnel */}
-                  <Link 
-                    href="#contact"
-                    className="group relative px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 bg-transparent border-2 border-amber-500 text-amber-400 font-semibold rounded overflow-hidden transition-all duration-300 hover:bg-amber-500/10 hover:scale-105 hover:border-amber-400 text-sm sm:text-base md:text-lg w-auto min-w-[200px] sm:min-w-[220px] md:min-w-[240px]"
+
+                  <Link
+                    href="#about"
+                    className="font-body relative px-7 py-3.5 rounded-full border border-violet-400/30 bg-violet-950/30 text-violet-200 text-sm hover:border-violet-400/60 hover:bg-violet-900/40 hover:scale-105 transition-all duration-300"
                   >
-                    <span className="relative z-10">Me contacter</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    À propos
                   </Link>
                 </div>
               </div>
@@ -169,10 +166,10 @@ export default function Header() {
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
               >
-                <div className="flex flex-col items-center text-amber-300">
-                  <span className="text-xs sm:text-sm font-light mb-2">Défiler</span>
-                  <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-amber-400/50 rounded-full flex justify-center">
-                    <div className="w-1 h-2 sm:h-3 bg-amber-400 rounded-full mt-1.5 sm:mt-2 animate-bounce" />
+                <div className="flex flex-col items-center text-violet-300/60">
+                  <span className="font-body text-[10px] tracking-[0.25em] uppercase mb-3">Défiler</span>
+                  <div className="w-5 h-8 border border-violet-400/30 rounded-full flex justify-center">
+                    <div className="w-0.5 h-2 bg-gradient-to-b from-violet-400 to-amber-400 rounded-full mt-1.5 animate-bounce" />
                   </div>
                 </div>
               </div>

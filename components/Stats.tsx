@@ -8,178 +8,160 @@ import clsx from 'clsx';
 
 const stats = {
   dev: [
-    { value: '7', label: 'technologies maîtrisées', Icon: Code2 },
-    { value: '4+', label: 'projets web livrés', Icon: FolderOpen },
+    { value: '7',    label: 'technologies maîtrisées', Icon: Code2 },
+    { value: '4+',   label: 'projets web livrés',      Icon: FolderOpen },
     { value: '100%', label: 'responsive & mobile-first', Icon: Smartphone },
   ],
   '3d': [
-    { value: '10+', label: 'modèles 3D finalisés', Icon: Box },
-    { value: '3', label: 'domaines — produit, archi, pub', Icon: Layers },
-    { value: 'Full', label: 'pipeline modélisation → rendu', Icon: Sparkles },
+    { value: '10+',  label: 'modèles 3D finalisés',            Icon: Box },
+    { value: '3',    label: 'domaines — produit, archi, pub', Icon: Layers },
+    { value: 'Full', label: 'pipeline modélisation → rendu',  Icon: Sparkles },
   ],
 };
 
 const content = {
   dev: {
-    title: 'Développez des expériences web sur mesure',
-    highlight: 'performantes',
+    title: 'Développez des expériences web',
+    highlight: 'sur mesure',
     description: 'Des applications web modernes, rapides et responsives qui transforment vos idées en réalité numérique.',
     cta: 'Voir mes projets web',
-    bgGradient: 'from-blue-900/90 via-blue-800/70 to-transparent',
+    bg: 'from-violet-900/80 via-purple-900/50 to-transparent',
+    highlight_grad: 'from-violet-300 to-violet-500',
+    cta_grad: 'from-violet-500 to-violet-600',
+    stat_color: 'text-violet-300',
+    icon_color: 'text-violet-400',
+    section_bg: 'bg-[#07000f]',
   },
   '3d': {
     title: 'Donnez vie à vos idées avec la',
     highlight: '3D',
     description: 'Des visuels immersifs et impactants pour sublimer vos produits et captiver votre audience.',
     cta: 'Voir le portfolio 3D',
-    bgGradient: 'from-amber-900/90 via-amber-800/70 to-transparent',
+    bg: 'from-amber-900/80 via-orange-900/50 to-transparent',
+    highlight_grad: 'from-amber-300 to-amber-500',
+    cta_grad: 'from-amber-500 to-amber-400',
+    stat_color: 'text-amber-300',
+    icon_color: 'text-amber-400',
+    section_bg: 'bg-[#0c0800]',
   },
 };
 
 export default function StatsSection() {
   const [portfolioType, setPortfolioType] = useState<'dev' | '3d'>('3d');
-
-  const currentContent = content[portfolioType];
+  const c = content[portfolioType];
   const currentStats = stats[portfolioType];
 
   return (
     <section id="stats" className="relative overflow-hidden">
-      {/* Hero Section */}
+      {/* Hero image section */}
       <div
-        className="relative bg-cover bg-center py-20 md:py-28 flex items-center justify-center"
+        className="relative bg-cover bg-center py-24 md:py-32 flex items-center justify-center"
         style={{ backgroundImage: "url('/Hero.png')" }}
       >
         <div className={clsx(
           'absolute inset-0 z-0 transition-all duration-700',
-          `bg-gradient-to-tr ${currentContent.bgGradient} via-black/70 to-transparent`,
-          'backdrop-blur-[1px]'
+          `bg-gradient-to-tr ${c.bg} via-black/70 to-transparent backdrop-blur-[1px]`
         )} />
 
-        <div className="relative z-10 w-full">
-          <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-5xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center text-center md:items-start md:text-left gap-5"
-            >
-              {/* Sélecteur */}
-              <div className="flex gap-1.5 p-1 bg-black/30 backdrop-blur-md rounded-full border border-white/20">
-                <button
-                  onClick={() => setPortfolioType('3d')}
-                  className={clsx(
-                    'rounded-full transition-all duration-300 flex items-center gap-1.5 font-medium',
-                    'px-3.5 py-1.5 text-xs sm:text-sm',
-                    portfolioType === '3d'
-                      ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-black shadow-md'
-                      : 'text-white/60 hover:text-white hover:bg-white/10'
-                  )}
-                >
-                  <Box size={13} />
-                  <span>3D & Design</span>
-                </button>
-                <button
-                  onClick={() => setPortfolioType('dev')}
-                  className={clsx(
-                    'rounded-full transition-all duration-300 flex items-center gap-1.5 font-medium',
-                    'px-3.5 py-1.5 text-xs sm:text-sm',
-                    portfolioType === 'dev'
-                      ? 'bg-gradient-to-r from-blue-400 to-blue-500 text-black shadow-md'
-                      : 'text-white/60 hover:text-white hover:bg-white/10'
-                  )}
-                >
-                  <Code size={13} />
-                  <span>Développement Web</span>
-                </button>
-              </div>
-
-              {/* Texte principal */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={portfolioType}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <h2 className="font-bold tracking-tight leading-tight text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-3 md:mb-4">
-                    {currentContent.title}{' '}
-                    <span className={clsx(
-                      'bg-gradient-to-r bg-clip-text text-transparent',
-                      portfolioType === 'dev' ? 'from-blue-300 to-blue-500' : 'from-amber-300 to-amber-500'
-                    )}>
-                      {currentContent.highlight}
-                    </span>
-                  </h2>
-                  <p className="text-white/60 text-sm sm:text-base md:text-lg max-w-xl">
-                    {currentContent.description}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* CTA */}
-              <Link
-                href={`/${portfolioType === 'dev' ? 'dev' : '3d'}-portfolio`}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center md:items-start md:text-left gap-6"
+          >
+            {/* Switcher */}
+            <div className="flex gap-1 p-1 bg-black/40 backdrop-blur-md rounded-full border border-white/10">
+              <button
+                onClick={() => setPortfolioType('3d')}
                 className={clsx(
-                  'group inline-flex items-center gap-2 rounded-full font-medium',
-                  'transition-all duration-300 hover:scale-105 active:scale-95',
-                  'px-5 py-2 text-sm',
-                  portfolioType === 'dev'
-                    ? 'bg-gradient-to-r from-blue-400 to-blue-500 text-black'
-                    : 'bg-gradient-to-r from-amber-400 to-amber-500 text-black'
+                  'rounded-full px-4 py-2 text-xs flex items-center gap-2 font-body font-medium transition-all duration-300',
+                  portfolioType === '3d'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-400 text-black shadow-md'
+                    : 'text-white/50 hover:text-white hover:bg-white/8'
                 )}
               >
-                <span>{currentContent.cta}</span>
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </motion.div>
-          </div>
+                <Box size={12} />
+                3D & Design
+              </button>
+              <button
+                onClick={() => setPortfolioType('dev')}
+                className={clsx(
+                  'rounded-full px-4 py-2 text-xs flex items-center gap-2 font-body font-medium transition-all duration-300',
+                  portfolioType === 'dev'
+                    ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-md'
+                    : 'text-white/50 hover:text-white hover:bg-white/8'
+                )}
+              >
+                <Code size={12} />
+                Développement
+              </button>
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={portfolioType}
+                initial={{ opacity: 0, x: -18 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 18 }}
+                transition={{ duration: 0.4 }}
+              >
+                <h2
+                  className="font-display text-3xl md:text-5xl lg:text-6xl font-light italic text-white leading-tight mb-4"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {c.title}{' '}
+                  <span className={clsx('bg-gradient-to-r bg-clip-text text-transparent', c.highlight_grad)}>
+                    {c.highlight}
+                  </span>
+                </h2>
+                <p className="font-body text-white/50 text-sm md:text-base max-w-lg">{c.description}</p>
+              </motion.div>
+            </AnimatePresence>
+
+            <Link
+              href={`/${portfolioType === 'dev' ? 'dev' : '3d'}-portfolio`}
+              className={clsx(
+                'group font-body inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-105',
+                `bg-gradient-to-r ${c.cta_grad}`,
+                portfolioType === 'dev' ? 'text-white' : 'text-black'
+              )}
+            >
+              {c.cta}
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
       </div>
 
-      {/* Section Statistiques */}
-      <div
-        id="stats-numbers"
-        className={clsx(
-          'relative py-10 px-4 sm:px-6 md:px-8 lg:px-12',
-          portfolioType === 'dev'
-            ? 'bg-slate-900'
-            : 'bg-neutral-900'
-        )}
-      >
-        <div className="mx-auto max-w-4xl">
+      {/* Stats bar */}
+      <div className={clsx('relative py-8 px-4 md:px-12', c.section_bg)}>
+        <div className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={portfolioType}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.4 }}
-              className="flex flex-col sm:flex-row items-stretch divide-y sm:divide-y-0 sm:divide-x divide-white/10"
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.35 }}
+              className="flex flex-col sm:flex-row items-stretch divide-y sm:divide-y-0 sm:divide-x divide-white/5"
             >
               {currentStats.map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  transition={{ duration: 0.4, delay: index * 0.07 }}
                   viewport={{ once: true }}
-                  className="flex-1 flex items-center gap-3 px-6 py-5"
+                  className="flex-1 flex items-center gap-3 px-7 py-5"
                 >
-                  <stat.Icon
-                    size={18}
-                    strokeWidth={1.5}
-                    className={portfolioType === 'dev' ? 'text-blue-400 shrink-0' : 'text-amber-400 shrink-0'}
-                  />
+                  <stat.Icon size={16} strokeWidth={1.5} className={clsx('shrink-0', c.icon_color)} />
                   <div>
-                    <p className={clsx(
-                      'text-lg font-semibold leading-none mb-0.5',
-                      portfolioType === 'dev' ? 'text-blue-300' : 'text-amber-300'
-                    )}>
+                    <p className={clsx('font-display text-xl font-medium leading-none mb-1', c.stat_color)} style={{ fontFamily: 'var(--font-display)' }}>
                       {stat.value}
                     </p>
-                    <p className="text-xs text-neutral-500">{stat.label}</p>
+                    <p className="font-body text-[10px] text-white/30">{stat.label}</p>
                   </div>
                 </motion.div>
               ))}
