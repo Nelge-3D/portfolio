@@ -71,7 +71,7 @@ export default function Loading() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0.6, 1] }}
                 transition={{ duration: 1.6, delay: 0.3 }}
-                className="font-body text-[10px] tracking-[0.35em] uppercase text-violet-400/60"
+                className="font-body text-[10px] tracking-[0.35em] uppercase text-zinc-500"
               >
                 Chargement
               </motion.p>

@@ -63,7 +63,7 @@ export default function NotFound() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <p
-            className="font-display font-light italic bg-gradient-to-br from-violet-300 via-fuchsia-300 to-amber-300 bg-clip-text text-transparent"
+            className="font-display font-light italic text-amber-400/90"
             style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(6rem, 20vw, 11rem)', lineHeight: 1 }}
           >
             404
@@ -95,7 +95,7 @@ export default function NotFound() {
           >
             Page introuvable
           </h1>
-          <p className="font-body text-sm text-violet-300/50 leading-relaxed max-w-sm mx-auto">
+          <p className="font-body text-sm text-zinc-400 leading-relaxed max-w-sm mx-auto">
             La page que tu cherches n&apos;existe pas ou a été déplacée. Retourne à l&apos;accueil pour continuer.
           </p>
         </motion.div>

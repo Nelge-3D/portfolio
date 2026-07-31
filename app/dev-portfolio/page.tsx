@@ -168,7 +168,7 @@ export default function DevPortfolio() {
           initial={{ opacity: 0, y: 16 }}
           animate={hero.visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="font-body text-xs tracking-[0.35em] uppercase text-violet-400 mb-6"
+          className="font-body text-xs tracking-[0.35em] uppercase text-zinc-500 mb-6"
         >
           Développeur Web & IA · Gabon
         </motion.p>
@@ -180,11 +180,11 @@ export default function DevPortfolio() {
           className="font-display text-6xl md:text-8xl font-semibold italic leading-[0.92] tracking-[-0.02em] mb-8"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          <span className="bg-gradient-to-br from-white via-violet-200 to-violet-500 bg-clip-text text-transparent">
+          <span className="text-zinc-100">
             Portfolio
           </span>
           <br />
-          <span className="bg-gradient-to-r from-violet-400 via-fuchsia-300 to-amber-300 bg-clip-text text-transparent">
+          <span className="text-violet-400">
             Développeur
           </span>
         </motion.h1>
@@ -193,7 +193,7 @@ export default function DevPortfolio() {
           initial={{ opacity: 0, y: 16 }}
           animate={hero.visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-body text-violet-300/70 text-base md:text-lg max-w-xl leading-relaxed mb-10"
+          className="font-body text-zinc-400 text-base md:text-lg max-w-xl leading-relaxed mb-10"
         >
           Interfaces modernes, produits qui ont du sens — construits avec Next.js,
           TypeScript et l&apos;IA comme copilote de création.
@@ -217,7 +217,7 @@ export default function DevPortfolio() {
         className="relative z-10 pb-24 px-6"
       >
         <div className="max-w-3xl mx-auto">
-          <p className={`font-body text-[10px] tracking-[0.3em] uppercase text-violet-500 text-center mb-10 transition-all duration-700 ${stackS.visible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>
+          <p className={`font-body text-[10px] tracking-[0.3em] uppercase text-zinc-500 text-center mb-10 transition-all duration-700 ${stackS.visible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>
             Stack technique
           </p>
           <div className="grid grid-cols-4 sm:grid-cols-7 gap-8 justify-items-center">
@@ -232,7 +232,7 @@ export default function DevPortfolio() {
                 <div className="text-3xl text-violet-400 hover:text-amber-300 transition-colors duration-300">
                   {tech.icon}
                 </div>
-                <p className="font-body text-[10px] text-violet-500/80">{tech.label}</p>
+                <p className="font-body text-[10px] text-zinc-500">{tech.label}</p>
               </motion.div>
             ))}
           </div>
@@ -248,12 +248,12 @@ export default function DevPortfolio() {
 
           {/* Header + filter */}
           <div className={`mb-12 transition-all duration-700 ${projS.visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="font-body text-[10px] tracking-[0.35em] uppercase text-violet-500/50 mb-3">
+            <p className="font-body text-[10px] tracking-[0.35em] uppercase text-zinc-500 mb-3">
               Projets
             </p>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-0">
               <h2
-                className="font-display text-3xl md:text-4xl font-light italic text-violet-200/70"
+                className="font-display text-3xl md:text-4xl font-light italic text-zinc-100"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 Ce que j&apos;ai construit
@@ -268,7 +268,7 @@ export default function DevPortfolio() {
                     className={`font-body text-[11px] px-4 py-1.5 rounded-full border transition-all duration-300 ${
                       activeCategory === cat
                         ? 'bg-violet-600 border-violet-500 text-white shadow-md shadow-violet-600/25'
-                        : 'bg-white/3 border-white/8 text-violet-400/60 hover:border-violet-400/35 hover:text-violet-300'
+                        : 'bg-white/3 border-white/8 text-zinc-400 hover:border-violet-400/35 hover:text-white'
                     }`}
                   >
                     {cat}
@@ -304,7 +304,7 @@ export default function DevPortfolio() {
           >
             Travaillons ensemble
           </h3>
-          <p className="font-body text-sm text-violet-300/60 mb-10">
+          <p className="font-body text-sm text-zinc-400 mb-10">
             Disponible pour des missions freelance
           </p>
 

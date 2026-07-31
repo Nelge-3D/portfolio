@@ -27,8 +27,15 @@ export default function About() {
   };
 
   const introBlocks = [
-    "Développeur Web & Mobile spécialisé en Next.js, TypeScript, Tailwind CSS, avec l'intelligence artificielle comme copilote de développement.",
-    "Grâce à l'IA, j'accélère l'écriture de code, automatise les tâches répétitives et me concentre sur la logique métier et l'expérience utilisateur.",
+    "Développeur Web & Mobile spécialisé en Next.js, TypeScript et Tailwind CSS. Je conçois des applications modernes, rapides et responsives — de l'interface à la logique métier.",
+    "J'intègre l'IA générative comme copilote de développement : elle accélère l'écriture de code et automatise le répétitif, pour me concentrer sur l'expérience utilisateur.",
+  ];
+
+  const distinctions = [
+    { icon: '🏆', text: '2ᵉ Lauréat — Concours National de l’Artisanat Numérique 2026 (CNMAG)' },
+    { icon: '🚀', text: 'NASA Space Apps 2025 — Prix du choix des participants' },
+    { icon: '💼', text: 'Stage Dév Web — Agence Fast Express (2026)' },
+    { icon: '🎓', text: 'Certifié Développeur Web — D-CLIC · OIF / École 241' },
   ];
 
   const infoBlocks = [
@@ -41,7 +48,7 @@ export default function About() {
         </svg>
       ),
       label: 'Stack',
-      value: 'Next.js · TypeScript · Tailwind · React · PostgreSQL · IA générative',
+      value: 'Next.js · TypeScript · React · Tailwind · Prisma · NextAuth · Vercel',
     },
     {
       icon: (
@@ -51,7 +58,7 @@ export default function About() {
         </svg>
       ),
       label: 'Freelance 3D',
-      value: 'Designer 3D Blender — publicité produit et rendus immersifs',
+      value: 'Designer 3D sur Blender — publicité produit et rendus immersifs',
     },
     {
       icon: (
@@ -61,7 +68,7 @@ export default function About() {
         </svg>
       ),
       label: 'Écriture',
-      value: 'Auteur d\'une saga SFFF explorant introspection et aventure',
+      value: 'Auteur de « Détenteurs », saga SF dystopique — Tome I : Par-delà le Dôme',
     },
     {
       icon: (
@@ -70,7 +77,7 @@ export default function About() {
         </svg>
       ),
       label: 'Parcours',
-      value: '2024 — 3D self learning · 2025 — Développement web D-CLIC',
+      value: '2024 — 3D en autodidacte · 2025 — Développement web (D-CLIC)',
     },
   ];
 
@@ -89,11 +96,11 @@ export default function About() {
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-violet-400/70 mb-5">
+          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-zinc-500 mb-5">
             Qui suis-je
           </p>
           <h2
-            className="font-display text-5xl md:text-7xl font-light italic bg-gradient-to-br from-white via-violet-200 to-violet-500 bg-clip-text text-transparent mb-6"
+            className="font-display text-5xl md:text-7xl font-light italic text-zinc-100 mb-6"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             À propos de moi
@@ -102,6 +109,29 @@ export default function About() {
             <div className="h-px w-14 bg-gradient-to-r from-transparent to-violet-400/50" />
             <div className="w-1 h-1 rounded-full bg-amber-400" />
             <div className="h-px w-14 bg-gradient-to-l from-transparent to-violet-400/50" />
+          </div>
+        </div>
+
+        {/* Distinctions ribbon (marquee) */}
+        <div
+          className={`relative mb-16 overflow-hidden py-1 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            transitionDelay: '150ms',
+            maskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)',
+          }}
+        >
+          <div className="flex w-max gap-3 animate-marquee hover:[animation-play-state:paused]">
+            {[...distinctions, ...distinctions].map(({ icon, text }, i) => (
+              <span
+                key={i}
+                className="inline-flex shrink-0 items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm"
+                aria-hidden={i >= distinctions.length}
+              >
+                <span className="text-sm">{icon}</span>
+                <span className="font-body text-[11px] md:text-xs text-zinc-300 whitespace-nowrap">{text}</span>
+              </span>
+            ))}
           </div>
         </div>
 
@@ -116,7 +146,7 @@ export default function About() {
               style={{ transitionDelay: `${250 + i * 200}ms` }}
             >
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500/0 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <p className="font-body relative text-sm md:text-base text-violet-100/75 leading-relaxed">
+              <p className="font-body relative text-sm md:text-base text-zinc-300 leading-relaxed">
                 {text}
               </p>
             </div>
@@ -136,8 +166,8 @@ export default function About() {
               <div className="text-violet-400 group-hover:text-amber-300 transition-colors duration-300 mb-4">
                 {icon}
               </div>
-              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-violet-500/70 mb-2">{label}</p>
-              <p className="font-body text-xs text-violet-200/60 leading-relaxed">{value}</p>
+              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-zinc-500 mb-2">{label}</p>
+              <p className="font-body text-xs text-zinc-400 leading-relaxed">{value}</p>
             </div>
           ))}
         </div>

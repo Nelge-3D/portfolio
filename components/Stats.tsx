@@ -112,7 +112,7 @@ export default function StatsSection() {
                   style={{ fontFamily: 'var(--font-display)' }}
                 >
                   {c.title}{' '}
-                  <span className={clsx('bg-gradient-to-r bg-clip-text text-transparent', c.highlight_grad)}>
+                  <span className={clsx('italic', c.stat_color)}>
                     {c.highlight}
                   </span>
                 </h2>

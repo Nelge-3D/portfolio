@@ -122,12 +122,12 @@ export default function Testimonials() {
             <span className="font-body text-xs tracking-widest uppercase text-amber-400/80">Témoignages</span>
           </div>
           <h2
-            className="font-display text-4xl md:text-6xl font-light italic bg-gradient-to-br from-white via-violet-200 to-violet-500 bg-clip-text text-transparent mb-4"
+            className="font-display text-4xl md:text-6xl font-light italic text-zinc-100 mb-4"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Ce que disent mes clients
           </h2>
-          <p className="font-body text-violet-300/50 text-sm max-w-xl mx-auto">
+          <p className="font-body text-zinc-400 text-sm max-w-xl mx-auto">
             Mon travail parle à travers les yeux de ceux qui l&apos;ont expérimenté
           </p>
         </div>
@@ -154,7 +154,7 @@ export default function Testimonials() {
 
             {/* Quote */}
             <blockquote
-              className="font-display text-xl md:text-2xl font-light italic text-violet-100/80 text-center leading-relaxed mb-8"
+              className="font-display text-xl md:text-2xl font-light italic text-zinc-200 text-center leading-relaxed mb-8"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               &ldquo;{t.quote}&rdquo;
@@ -175,8 +175,8 @@ export default function Testimonials() {
               </div>
               <div className="text-center sm:text-left">
                 <p className="font-body font-semibold text-sm text-white">{t.name}</p>
-                <p className="font-body text-xs text-violet-300/60">{t.title}</p>
-                <p className="font-body text-[10px] text-violet-400/40 mt-0.5">{t.company}</p>
+                <p className="font-body text-xs text-zinc-400">{t.title}</p>
+                <p className="font-body text-[10px] text-zinc-500 mt-0.5">{t.company}</p>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ export default function Testimonials() {
           </div>
 
           {!isTouchDevice && (
-            <div className="flex items-center gap-1.5 text-[10px] text-violet-500/60 font-body">
+            <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-body">
               <div className={`w-1.5 h-1.5 rounded-full ${isAutoPlay ? 'bg-amber-400 animate-pulse' : 'bg-gray-600'}`} />
               Auto
             </div>
@@ -223,7 +223,7 @@ export default function Testimonials() {
               style={{ width: `${((current + 1) / testimonials.length) * 100}%` }}
             />
           </div>
-          <div className="flex justify-between font-body text-[10px] text-violet-500/40 mt-1.5">
+          <div className="flex justify-between font-body text-[10px] text-zinc-500 mt-1.5">
             <span>{current + 1}</span>
             <span>{testimonials.length}</span>
           </div>

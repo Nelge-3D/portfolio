@@ -39,13 +39,13 @@ export default function Services() {
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Label */}
-        <p className={`font-body text-[10px] tracking-[0.35em] uppercase text-amber-400/70 mb-5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>
+        <p className={`font-body text-[10px] tracking-[0.35em] uppercase text-zinc-500 mb-5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>
           Offres
         </p>
 
         {/* Heading */}
         <h2
-          className={`font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-violet-100/80 mb-16 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-zinc-100 mb-16 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Mes services

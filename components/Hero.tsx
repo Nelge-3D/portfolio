@@ -27,7 +27,7 @@ export default function Header() {
       <video
         className="absolute top-0 left-0 w-full h-full object-cover transition-all duration-700 ease-out"
         style={{
-          filter: `brightness(0.4) contrast(1.2) saturate(1.1)`,
+          filter: `brightness(0.65) contrast(1.15) saturate(1.1)`,
           transform: `scale(1.05) translate(${mousePosition.x * 0.02 - 1}px, ${mousePosition.y * 0.02 - 1}px)`,
         }}
         autoPlay
@@ -37,7 +37,6 @@ export default function Header() {
         preload="metadata"
         poster="/Hero.png"
       >
-        <source src="/Hero_v1.webm" type="video/webm" />
         <source src="/Hero_v1.mp4" type="video/mp4" />
       </video>
 
@@ -47,14 +46,14 @@ export default function Header() {
         style={{
           background: `
             radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%,
-              rgba(124, 58, 237, 0.18) 0%,
-              rgba(7, 0, 15, 0.45) 25%,
-              rgba(7, 0, 15, 0.85) 100%
+              rgba(124, 58, 237, 0.12) 0%,
+              rgba(7, 0, 15, 0.25) 30%,
+              rgba(7, 0, 15, 0.6) 100%
             ),
             linear-gradient(135deg,
-              rgba(7, 0, 15, 0.65) 0%,
-              rgba(16, 0, 32, 0.35) 50%,
-              rgba(7, 0, 15, 0.75) 100%
+              rgba(7, 0, 15, 0.45) 0%,
+              rgba(16, 0, 32, 0.15) 50%,
+              rgba(7, 0, 15, 0.5) 100%
             )
           `
         }}
@@ -97,11 +96,11 @@ export default function Header() {
               >
                 {/* Margin bottom optimisé */}
                 <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light italic mb-3 sm:mb-4 md:mb-6 text-white relative" style={{ fontFamily: 'var(--font-display)' }}>
-                  <span className="relative inline-block bg-gradient-to-br from-white via-violet-100 to-violet-300 bg-clip-text text-transparent">
+                  <span className="relative inline-block text-white">
                     Nelge
                   </span>
                   <span className="relative ml-2 sm:ml-3 md:ml-4 inline-block">
-                    <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
+                    <span className="text-amber-400">
                       3D
                     </span>
                     <div className="absolute -inset-2 bg-gradient-to-r from-amber-400/15 to-violet-500/15 blur-xl rounded-xl" />
@@ -116,10 +115,10 @@ export default function Header() {
                 }`}
               >
                 {/* Margin bottom optimisé */}
-                <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-5 md:mb-6 font-light italic text-violet-100/80 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
+                <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-5 md:mb-6 font-light italic text-zinc-300 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
                   <span className="text-amber-300">Donner vie à l&apos;imaginaire</span>
                   <br />
-                  <span className="text-base sm:text-lg md:text-xl text-violet-200/50">&ldquo;un pixel à la fois&rdquo;</span>
+                  <span className="text-base sm:text-lg md:text-xl text-zinc-500">&ldquo;un pixel à la fois&rdquo;</span>
                 </p>
               </div>
 
@@ -166,7 +165,7 @@ export default function Header() {
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
               >
-                <div className="flex flex-col items-center text-violet-300/60">
+                <div className="flex flex-col items-center text-zinc-500">
                   <span className="font-body text-[10px] tracking-[0.25em] uppercase mb-3">Défiler</span>
                   <div className="w-5 h-8 border border-violet-400/30 rounded-full flex justify-center">
                     <div className="w-0.5 h-2 bg-gradient-to-b from-violet-400 to-amber-400 rounded-full mt-1.5 animate-bounce" />

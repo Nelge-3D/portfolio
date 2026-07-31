@@ -121,7 +121,7 @@ export default function ProjectSlideshow({ projects }: { projects: Project[] }) 
 
   if (projects.length === 0) {
     return (
-      <p className="text-center py-16 font-body text-sm text-violet-400/40">
+      <p className="text-center py-16 font-body text-sm text-zinc-500">
         Aucun projet dans cette catégorie.
       </p>
     );
@@ -134,7 +134,7 @@ export default function ProjectSlideshow({ projects }: { projects: Project[] }) 
 
         {/* Left — project list */}
         <div className="flex flex-col justify-center gap-1 w-[42%] shrink-0">
-          <p className="font-body text-[9px] tracking-[0.35em] uppercase text-violet-500/50 mb-6">
+          <p className="font-body text-[9px] tracking-[0.35em] uppercase text-zinc-500 mb-6">
             Projets réalisés
           </p>
 
@@ -151,7 +151,7 @@ export default function ProjectSlideshow({ projects }: { projects: Project[] }) 
               {/* Number */}
               <span
                 className={`font-display font-light italic text-sm transition-colors duration-300 shrink-0 ${
-                  activeSlide === i ? 'text-amber-400' : 'text-violet-500/30'
+                  activeSlide === i ? 'text-amber-400' : 'text-zinc-600'
                 }`}
                 style={{ fontFamily: 'var(--font-display)' }}
               >
@@ -165,7 +165,7 @@ export default function ProjectSlideshow({ projects }: { projects: Project[] }) 
                 className={`font-display font-light italic transition-colors duration-300 ${
                   activeSlide === i
                     ? 'text-white text-3xl lg:text-4xl'
-                    : 'text-violet-300/40 text-2xl lg:text-3xl hover:text-violet-200/70'
+                    : 'text-zinc-500 text-2xl lg:text-3xl hover:text-zinc-300'
                 }`}
               />
 
@@ -281,7 +281,7 @@ export default function ProjectSlideshow({ projects }: { projects: Project[] }) 
               >
                 {project.title}
               </p>
-              <p className="font-body text-xs text-violet-300/50 truncate mt-0.5">
+              <p className="font-body text-xs text-zinc-400 truncate mt-0.5">
                 {project.description}
               </p>
             </div>

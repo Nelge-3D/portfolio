@@ -36,11 +36,11 @@ export default function CreationProcess() {
       <div className="relative max-w-6xl mx-auto">
         {/* Section header */}
         <div data-aos="fade-up" className="text-center mb-20">
-          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-amber-500/70 mb-4">
+          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-zinc-500 mb-4">
             Blender · Workflow
           </p>
           <h3
-            className="font-display text-4xl md:text-5xl font-light italic text-amber-100"
+            className="font-display text-4xl md:text-5xl font-light italic text-zinc-100"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Processus de Création
@@ -51,7 +51,7 @@ export default function CreationProcess() {
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-400/50" />
           </div>
 
-          <p className="font-body text-amber-200/50 max-w-2xl mx-auto mt-8 text-sm md:text-base leading-relaxed">
+          <p className="font-body text-zinc-400 max-w-2xl mx-auto mt-8 text-sm md:text-base leading-relaxed">
             Pour la réalisation de ces projets, j&apos;utilise exclusivement{' '}
             <strong className="text-amber-300 font-medium">Blender</strong> — logiciel open-source de modélisation, rendu et animation.
             De la structure initiale jusqu&apos;au rendu final, tout est conçu avec une attention aux détails et à l&apos;optimisation.
@@ -71,12 +71,12 @@ export default function CreationProcess() {
                 {step.number}
               </p>
               <h4
-                className="font-display text-2xl font-medium italic text-amber-200 mb-3"
+                className="font-display text-2xl font-medium italic text-zinc-100 mb-3"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 {step.title}
               </h4>
-              <p className="font-body text-sm text-amber-200/50 leading-relaxed">{step.body}</p>
+              <p className="font-body text-sm text-zinc-400 leading-relaxed">{step.body}</p>
             </div>
 
             {/* Image */}
@@ -113,12 +113,12 @@ export default function CreationProcess() {
             03
           </p>
           <h4
-            className="font-display text-2xl font-medium italic text-amber-200 mb-3"
+            className="font-display text-2xl font-medium italic text-zinc-100 mb-3"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Rendu Final
           </h4>
-          <p className="font-body text-sm text-amber-200/50 leading-relaxed">
+          <p className="font-body text-sm text-zinc-400 leading-relaxed">
             Ajout des matériaux, textures, éclairage HDRI et post-traitement dans Blender. Le rendu final met en valeur
             le modèle avec une ambiance visuelle forte et professionnelle.
           </p>
@@ -127,12 +127,12 @@ export default function CreationProcess() {
         {/* Logo mention */}
         <div data-aos="fade-up" className="text-center max-w-xl mx-auto mb-16">
           <h4
-            className="font-display text-xl font-medium italic text-amber-300/70 mb-2"
+            className="font-display text-xl font-medium italic text-zinc-100 mb-2"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Identité visuelle
           </h4>
-          <p className="font-body text-sm text-amber-200/40">
+          <p className="font-body text-sm text-zinc-400">
             Le logo a été conçu via <strong className="text-amber-300/70 font-medium">Canva</strong> et complète l&apos;univers 3D développé dans ce portfolio.
           </p>
         </div>

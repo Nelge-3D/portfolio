@@ -27,13 +27,13 @@ export default function Welcome({ onClose }: WelcomeProps) {
         </div>
 
         <h2
-          className="font-display text-3xl font-light italic bg-gradient-to-br from-white via-violet-200 to-violet-400 bg-clip-text text-transparent mb-4"
+          className="font-display text-3xl font-light italic text-zinc-100 mb-4"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Bienvenue
         </h2>
 
-        <p className="font-body text-sm text-violet-200/60 leading-relaxed mb-8">
+        <p className="font-body text-sm text-zinc-400 leading-relaxed mb-8">
           Pour profiter pleinement de l&apos;expérience, activez la musique via l&apos;icône{' '}
           <span className="inline-flex items-center justify-center mx-1 w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/30">
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-300">

@@ -38,7 +38,7 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="font-body text-xs tracking-[0.35em] uppercase text-amber-500/80 mb-6"
+          className="font-body text-xs tracking-[0.35em] uppercase text-zinc-500 mb-6"
         >
           Créations 3D · Blender · Gabon
         </motion.p>
@@ -50,11 +50,11 @@ export default function Portfolio() {
           className="font-display text-6xl md:text-8xl font-semibold italic leading-[0.92] tracking-[-0.02em] mb-8"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          <span className="bg-gradient-to-br from-amber-100 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+          <span className="text-zinc-100">
             Portfolio
           </span>
           <br />
-          <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-200 bg-clip-text text-transparent">
+          <span className="text-amber-400">
             3D Design
           </span>
         </motion.h1>
@@ -63,7 +63,7 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-body text-amber-200/50 text-base md:text-lg max-w-xl leading-relaxed mb-10"
+          className="font-body text-zinc-400 text-base md:text-lg max-w-xl leading-relaxed mb-10"
         >
           Modélisation, rendu et animation — de la structure jusqu&apos;au visuel final.
         </motion.p>
@@ -116,7 +116,7 @@ export default function Portfolio() {
         >
           Travaillons ensemble
         </h3>
-        <p className="font-body text-sm text-amber-300/50 mb-10">
+        <p className="font-body text-sm text-zinc-400 mb-10">
           Disponible pour des missions freelance
         </p>
 

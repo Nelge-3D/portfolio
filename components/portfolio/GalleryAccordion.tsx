@@ -119,7 +119,7 @@ function AccordionItem({
           {item.title}
         </p>
         {isActive && (
-          <p className="font-body text-[10px] text-amber-300/70 tracking-widest uppercase mt-1 animate-fadeIn">
+          <p className="font-body text-[10px] text-zinc-500 tracking-widest uppercase mt-1 animate-fadeIn">
             Cliquer pour agrandir
           </p>
         )}
@@ -138,7 +138,7 @@ export default function GalleryAccordion({ items, onSelect }: Props) {
 
   if (items.length === 0) {
     return (
-      <div className="text-center py-20 text-amber-300/40 font-body text-sm">
+      <div className="text-center py-20 text-zinc-500 font-body text-sm">
         Aucun élément dans cette catégorie.
       </div>
     );

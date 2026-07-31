@@ -18,7 +18,7 @@ export default function KeyboardShortcutsPanel() {
       exit={{ opacity: 0, scale: 0.9, y: -10 }}
       className="absolute top-12 md:top-16 right-2 md:right-4 bg-black/80 text-white p-3 md:p-4 rounded-lg shadow-xl backdrop-blur-sm border border-white/20 text-xs md:text-sm z-20"
     >
-      <h4 className="font-semibold mb-2 text-purple-300">Raccourcis clavier :</h4>
+      <h4 className="font-semibold mb-2 text-zinc-100">Raccourcis clavier :</h4>
       <div className="space-y-1">
         {shortcuts.map(([label, key]) => (
           <div key={key} className="flex justify-between gap-4">

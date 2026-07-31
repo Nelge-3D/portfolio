@@ -20,6 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nelge3d.vercel.app"),
   title: {
     default: "Nelge 3D | Créations 3D & Développement Web",
     template: "%s | Nelge 3D",
@@ -27,16 +28,23 @@ export const metadata: Metadata = {
   description:
     "Donnez vie à vos idées avec des créations 3D immersives et des applications web performantes.",
   keywords: ["3D", "création 3D", "développement web", "portfolio", "design 3D"],
-  authors: [{ name: "Nelge 3D" }],
+  authors: [{ name: "Louis-Gériel Ngabi" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://nelge3d.com",
+    url: "https://nelge3d.vercel.app",
     title: "Nelge 3D | Créations 3D & Développement Web",
     description:
       "Donnez vie à vos idées avec des créations 3D immersives et des applications web performantes.",
     siteName: "Nelge 3D",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Nelge 3D" }],
+    images: [{ url: "/Hero.png", width: 1200, height: 630, alt: "Nelge 3D" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nelge 3D | Créations 3D & Développement Web",
+    description:
+      "Donnez vie à vos idées avec des créations 3D immersives et des applications web performantes.",
+    images: ["/Hero.png"],
   },
 };
 

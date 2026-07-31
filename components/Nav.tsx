@@ -207,9 +207,9 @@ export default function Nav() {
               >
                 <span className={clsx(
                   'text-sm lg:text-base font-medium tracking-wide transition-all duration-300',
-                  activeSection === item.id 
+                  activeSection === item.id
                     ? 'text-amber-300'
-                    : 'text-violet-200/70 group-hover:text-white'
+                    : 'text-zinc-300 group-hover:text-white'
                 )}>
                   {item.label}
                 </span>
@@ -252,7 +252,7 @@ export default function Nav() {
                 'w-9 h-9 rounded-full border-2',
                 isPlaying
                   ? 'border-amber-400/60 bg-amber-400/10 text-amber-400 hover:bg-amber-400/20'
-                  : 'border-violet-400/20 bg-violet-950/30 text-violet-300/70 hover:border-violet-400/50 hover:text-white',
+                  : 'border-violet-400/20 bg-violet-950/30 text-zinc-300 hover:border-violet-400/50 hover:text-white',
                 'group'
               )}
               aria-label={isPlaying ? 'Mettre en pause' : 'Activer la musique'}

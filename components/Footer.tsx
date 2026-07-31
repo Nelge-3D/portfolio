@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Instagram, Youtube, Mail, Linkedin } from 'lucide-react';
+import { Github, Mail, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 const navLinks = [
@@ -17,10 +17,9 @@ const portfolioLinks = [
 ];
 
 const socialLinks = [
-  { href: 'https://instagram.com',                          Icon: Instagram, label: 'Instagram' },
-  { href: 'https://youtube.com',                            Icon: Youtube,   label: 'YouTube' },
-  { href: 'mailto:louisgeriel.ngabi@gmail.com',             Icon: Mail,      label: 'Email' },
-  { href: 'https://www.linkedin.com/in/louis-geriel-ngabi/', Icon: Linkedin,  label: 'LinkedIn' },
+  { href: 'https://github.com/Nelge-3D',                     Icon: Github,   label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/louis-geriel-ngabi/', Icon: Linkedin, label: 'LinkedIn' },
+  { href: 'mailto:louisgeriel.ngabi@gmail.com',             Icon: Mail,     label: 'Email' },
 ];
 
 export default function Footer() {
@@ -42,30 +41,30 @@ export default function Footer() {
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Nelge{' '}
-              <span className="bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">3D</span>
+              <span className="text-amber-400">3D</span>
             </p>
-            <p className="font-body text-sm text-violet-300/40 leading-relaxed max-w-xs">
+            <p className="font-body text-sm text-zinc-400 leading-relaxed max-w-xs">
               Création 3D & développement web — du concept au rendu final.
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-5">
-            <p className="font-body text-[9px] font-semibold uppercase tracking-[0.3em] text-violet-500/50">
+            <p className="font-body text-[9px] font-semibold uppercase tracking-[0.3em] text-zinc-500">
               Navigation
             </p>
             <ul className="space-y-2">
               {navLinks.map(([href, label]) => (
                 <li key={label}>
-                  <a href={href} className="font-body text-sm text-violet-300/40 hover:text-amber-300 transition-colors duration-200">
+                  <a href={href} className="font-body text-sm text-zinc-400 hover:text-amber-300 transition-colors duration-200">
                     {label}
                   </a>
                 </li>
               ))}
               <li className="pt-1 border-t border-white/5 mt-3">
-                <p className="font-body text-[9px] uppercase tracking-widest text-violet-500/30 mb-2">Portfolios</p>
+                <p className="font-body text-[9px] uppercase tracking-widest text-zinc-600 mb-2">Portfolios</p>
                 {portfolioLinks.map(([href, label]) => (
-                  <Link key={label} href={href} className="block font-body text-sm text-violet-300/40 hover:text-amber-300 transition-colors duration-200 mb-1">
+                  <Link key={label} href={href} className="block font-body text-sm text-zinc-400 hover:text-amber-300 transition-colors duration-200 mb-1">
                     {label}
                   </Link>
                 ))}
@@ -86,13 +85,13 @@ export default function Footer() {
                   target={href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="p-2 rounded-full border border-white/8 bg-white/3 text-violet-400/60 hover:text-amber-300 hover:border-amber-400/30 hover:bg-amber-950/20 transition-all duration-300"
+                  className="p-2 rounded-full border border-white/8 bg-white/3 text-zinc-400 hover:text-amber-300 hover:border-amber-400/30 hover:bg-amber-950/20 transition-all duration-300"
                 >
                   <Icon size={15} strokeWidth={1.5} />
                 </a>
               ))}
             </div>
-            <p className="font-body text-xs text-violet-300/30">
+            <p className="font-body text-xs text-zinc-500">
               louisgeriel.ngabi@gmail.com
             </p>
           </div>
@@ -107,10 +106,10 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-          <span className="font-body text-xs text-violet-500/30">
+          <span className="font-body text-xs text-zinc-500">
             © {new Date().getFullYear()} Nelge 3D. Tous droits réservés.
           </span>
-          <span className="font-body text-xs text-violet-500/30">
+          <span className="font-body text-xs text-zinc-500">
             Conçu & développé par Louis Gériel Ngabi
           </span>
         </div>
